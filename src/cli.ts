@@ -81,7 +81,7 @@ class AutoCLI {
 }
 
 // =====================================================================================
-type flagTypes = 'delete' | 'pizzaType2' | 'source';
+type flagTypes = 'delete' | 'pizzaType2' | 'source' | 'order';
 
 const flags: FlagsObjectType<flagTypes> = {
   delete: {
@@ -103,6 +103,12 @@ const flags: FlagsObjectType<flagTypes> = {
     alias: '-s',
     desc: 'pizza type',
     value: true,
+  },
+  order: {
+    flag: 'order',
+    alias: 'o',
+    desc: 'order a pizza',
+    value: false,
   },
 };
 
