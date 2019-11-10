@@ -3,10 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import {FlagsObjectType} from './types';
 
-export function isOption(option: string): boolean {
-  return option.charAt(0) === '-';
-}
-
 const fixedWidth = (s: string, w: number): string => {
   if (s.length === w) {
     return s;
@@ -23,6 +19,10 @@ const fixedWidth = (s: string, w: number): string => {
   s += spaces;
 
   return s;
+};
+
+export const isOption = (option: string): boolean => {
+  return option.charAt(0) === '-';
 };
 
 export const findVersion = (): string | undefined => {
