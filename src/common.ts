@@ -2,7 +2,7 @@ import os from 'os';
 import fs from 'fs';
 import path from 'path';
 import {FlagsObjectType} from './types';
-// TODO add findVersion method
+
 const fixedWidth = (s: string, w: number): string => {
   if (s.length === w) {
     return s;
