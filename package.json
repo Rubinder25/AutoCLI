@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Rubinder25/AutoCLI#readme",
   "devDependencies": {
+    "@types/node": "^12.12.7",
     "eslint": "^6.6.0",
     "typescript": "^3.7.2"
   }
