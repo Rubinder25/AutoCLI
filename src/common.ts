@@ -3,6 +3,10 @@ import fs from 'fs';
 import path from 'path';
 import {FlagsObjectType} from './types';
 
+export function isOption(option: string): boolean {
+  return option.charAt(0) === '-';
+}
+
 const fixedWidth = (s: string, w: number): string => {
   if (s.length === w) {
     return s;
@@ -59,38 +63,59 @@ export const getMappings = (cliInputArr: string[]): {[key: string]: number} => {
   return flagMappings;
 };
 
+export const generateTable = (header: string, data: string[][]): string => {
+  const EOL = os.EOL;
+  const nColWidth: number[] = Array(data[0].length).fill(0);
+  let table: string = EOL + header + EOL;
+
+  data.forEach((row) => {
+    row.forEach((cell, j) => {
+      nColWidth[j] = Math.max(nColWidth[j], cell.length);
+    });
+  });
+
+  data.forEach((row) => {
+    row.forEach((cell, j) => {
+      table += fixedWidth(cell, nColWidth[j]);
+    });
+    table += EOL;
+  });
+
+  return table;
+};
+
 export const generateHelp = (programName: string, flags: FlagsObjectType<any>): string => {
   const EOL = os.EOL;
-  let help = `${EOL}Usage: ${programName} [options]${EOL}${EOL}`;
-  help += `Options:${EOL}`;
+  let help = `${EOL}Usage: ${programName} [options]${EOL}`;
 
-  let displayOptionsCOL1 = 0;
-  let displayOptionsCOL2 = 0;
-  let displayOptionsCOL3 = 0;
+  const commands: string[][] = [];
+  const options: string[][] = [];
 
   for (const key in flags) {
+    let selectedCategory: string[][];
+
     if (flags.hasOwnProperty(key)) {
       const flagOptions = flags[key];
-      displayOptionsCOL1 = Math.max(displayOptionsCOL1, flagOptions.alias.length);
-      displayOptionsCOL2 = Math.max(
-        displayOptionsCOL2,
-        flagOptions.flag.length + (flagOptions.req ? 6 : 0),
-      );
-      displayOptionsCOL3 = Math.max(displayOptionsCOL3, flagOptions.desc.length);
+      if (isOption(flagOptions.alias) && isOption(flagOptions.flag)) {
+        selectedCategory = options;
+      } else {
+        selectedCategory = commands;
+      }
+
+      selectedCategory.push([
+        `  ${flagOptions.alias},`,
+        ` ${flagOptions.flag} ${flagOptions.req ? '<val>' : ''}`,
+        `  ${flagOptions.desc}`,
+      ]);
     }
   }
 
-  for (const key in flags) {
-    if (flags.hasOwnProperty(key)) {
-      const flagOptions = flags[key];
-      help += fixedWidth(`  ${flagOptions.alias},`, displayOptionsCOL1 + 3);
-      help += fixedWidth(
-        ` ${flagOptions.flag} ${flagOptions.req ? '<val>' : ''}`,
-        displayOptionsCOL2 + 1,
-      );
-      help += fixedWidth(`  ${flagOptions.desc}`, displayOptionsCOL3 + 2);
-      help += EOL;
-    }
+  if (commands.length > 0) {
+    help += generateTable('Commands:', commands);
+  }
+
+  if (options.length > 0) {
+    help += generateTable('Options:', options);
   }
 
   return help;
