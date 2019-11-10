@@ -1,0 +1,7 @@
+node_modules
+tsconfig.json
+src
+.eslintrc.js
+.prettierrc.js
+build/__tests__
+.github
