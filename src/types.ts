@@ -10,7 +10,7 @@ export type FlagsObjectType<T extends any> = {
   [key in T]: FlagObjectOptions;
 };
 
-export type FlagValType = string | boolean | undefined;
+export type FlagValType = string | undefined;
 
 export interface ErrorType {
   display: string;
