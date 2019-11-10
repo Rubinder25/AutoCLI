@@ -34,7 +34,7 @@ class AutoCLI {
           const lastIndex = Math.max(indexFlag, indexAlias);
 
           if (lastIndex !== -1) {
-            flagVal = true;
+            flagVal = key;
 
             if (flagOptions.value) {
               flagVal = cliInputArr[lastIndex + 1];
