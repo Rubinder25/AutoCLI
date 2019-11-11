@@ -19,6 +19,7 @@
   "devDependencies": {
     "@types/node": "^12.12.7",
     "eslint": "^6.6.0",
+    "jest": "^24.9.0",
     "typescript": "^3.7.2"
   }
 }
