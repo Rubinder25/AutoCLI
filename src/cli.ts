@@ -1,9 +1,9 @@
 import path from 'path';
 import {generateHelp, generateVersion, findVersion, getMappings} from './common';
-import {ParseType, FlagsObjectType, FlagValType, ErrorType} from './types';
+import {ParseFuncType, FlagsObjectType, ErrorType, ParsedResultType} from './types';
 
 class AutoCLI {
-  public parse: ParseType;
+  public parse: ParseFuncType;
 
   public constructor(psProgramName?: string, psVersion?: string) {
     const programName = psProgramName || path.basename(process.argv[1]);
@@ -14,14 +14,14 @@ class AutoCLI {
       cliInputArr: string[],
       flags: T,
       onError: (err: ErrorType) => void,
-    ): {[key in keyof T]: FlagValType} {
-      const res = {} as {[key in keyof T]: FlagValType};
+    ): ParsedResultType<T> {
+      const res = {} as ParsedResultType<T>;
       const flagMappings = getMappings(cliInputArr);
 
       for (const key in flags) {
         if ((flags as any).hasOwnProperty(key)) {
           const flagOptions = flags[key];
-          let flagVal: FlagValType = undefined;
+          let flagVal = undefined;
 
           const indexFlag =
             flagMappings[flagOptions.flag] !== undefined ? flagMappings[flagOptions.flag] : -1;
@@ -36,7 +36,7 @@ class AutoCLI {
           if (lastIndex !== -1) {
             flagVal = key;
 
-            if (flagOptions.arg) {
+            if (flagOptions.argument) {
               flagVal = cliInputArr[lastIndex + 1];
 
               delete flagMappings[cliInputArr[lastIndex + 1]];
@@ -46,7 +46,7 @@ class AutoCLI {
               }
             }
           } else {
-            if (flagOptions.req) {
+            if (flagOptions.required) {
               errors.push({display: `${key} is required (err: 102)`, flag: key, code: 102});
             }
           }
@@ -87,29 +87,29 @@ const flags: FlagsObjectType<flagTypes> = {
   delete: {
     flag: '--delete',
     alias: '-d',
-    desc: 'delete it',
-    arg: false,
-    req: true,
+    description: 'delete it',
+    argument: false,
+    required: true,
   },
   pizzaType2: {
     flag: '--pizza-type',
     alias: '-p',
-    desc: 'pizza type',
+    description: 'pizza type',
   },
   source: {
     flag: '--source',
     alias: '-s',
-    desc: 'pizza type',
-    arg: true,
+    description: 'pizza type',
+    argument: true,
   },
   order: {
     flag: 'order',
     alias: 'o',
-    desc: 'order a pizza',
-    arg: false,
+    description: 'order a pizza',
+    argument: false,
   },
 };
 
 const autoCli = new AutoCLI();
 const b = autoCli.parse(process.argv.slice(2), flags, (err) => console.log(err.display));
-console.log(b);
+console.log(b.delete);

@@ -104,8 +104,8 @@ export const generateHelp = (programName: string, flags: FlagsObjectType<any>): 
 
       selectedCategory.push([
         `  ${flagOptions.alias},`,
-        ` ${flagOptions.flag} ${flagOptions.req ? '<val>' : ''}`,
-        `  ${flagOptions.desc}`,
+        ` ${flagOptions.flag} ${flagOptions.required ? '<val>' : ''}`,
+        `  ${flagOptions.description}`,
       ]);
     }
   }

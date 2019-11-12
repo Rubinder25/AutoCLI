@@ -1,16 +1,16 @@
-export interface FlagObjectOptions {
+export interface FlagConfigType {
   flag: string;
   alias: string;
-  desc: string;
-  arg?: boolean; // default should be false
-  req?: boolean; // default should be false
+  description: string;
+  argument?: boolean; // default should be false
+  required?: boolean; // default should be false
 }
 
 export type FlagsObjectType<T extends any> = {
-  [key in T]: FlagObjectOptions;
+  [key in T]: FlagConfigType;
 };
 
-export type FlagValType = string | undefined;
+export type ParsedResultType<T> = {[key in keyof T]: string | undefined};
 
 export interface ErrorType {
   display: string;
@@ -18,8 +18,8 @@ export interface ErrorType {
   code: number;
 }
 
-export type ParseType = <T extends FlagsObjectType<any>>(
+export type ParseFuncType = <T extends FlagsObjectType<any>>(
   cliInputArr: string[],
   flags: T,
   onError: (err: ErrorType) => void,
-) => {[key in keyof T]: FlagValType};
+) => ParsedResultType<T>;
