@@ -2,7 +2,7 @@ export interface FlagObjectOptions {
   flag: string;
   alias: string;
   desc: string;
-  value: boolean;
+  arg?: boolean; // default should be false
   req?: boolean; // default should be false
 }
 

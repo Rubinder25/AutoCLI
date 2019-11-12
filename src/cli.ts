@@ -36,7 +36,7 @@ class AutoCLI {
           if (lastIndex !== -1) {
             flagVal = key;
 
-            if (flagOptions.value) {
+            if (flagOptions.arg) {
               flagVal = cliInputArr[lastIndex + 1];
 
               delete flagMappings[cliInputArr[lastIndex + 1]];
@@ -88,27 +88,25 @@ const flags: FlagsObjectType<flagTypes> = {
     flag: '--delete',
     alias: '-d',
     desc: 'delete it',
-    value: false,
+    arg: false,
     req: true,
   },
   pizzaType2: {
     flag: '--pizza-type',
     alias: '-p',
     desc: 'pizza type',
-    req: true,
-    value: true,
   },
   source: {
     flag: '--source',
     alias: '-s',
     desc: 'pizza type',
-    value: true,
+    arg: true,
   },
   order: {
     flag: 'order',
     alias: 'o',
     desc: 'order a pizza',
-    value: false,
+    arg: false,
   },
 };
 
