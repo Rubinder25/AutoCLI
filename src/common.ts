@@ -33,7 +33,7 @@ const fixedWidth = (s: string, w: number): string => {
   return s;
 };
 
-const getRow = (flagConfig: FlagConfigType): string[] => {
+const getFlagRow = (flagConfig: FlagConfigType): string[] => {
   return [
     `  ${flagConfig.alias},`,
     ` ${flagConfig.flag} ${flagConfig.required ? '<val>' : ''}`,
@@ -83,7 +83,7 @@ export const getMappings = (cliInputArr: string[]): {[key: string]: number} => {
   return flagMappings;
 };
 
-export const generateTable = (header: string, data: string[][]): string => {
+export const getTable = (header: string, data: string[][]): string => {
   const EOL = os.EOL;
   const nColWidth: number[] = Array(data[0].length).fill(0);
   let table: string = EOL + header + EOL;
@@ -104,7 +104,7 @@ export const generateTable = (header: string, data: string[][]): string => {
   return table;
 };
 
-export const generateHelp = (programName: string, flags: FlagsObjectType<any>): string => {
+export const getHelp = (programName: string, flags: FlagsObjectType<any>): string => {
   const EOL = os.EOL;
   let help = `${EOL}Usage: ${programName} [options]${EOL}`;
 
@@ -124,7 +124,7 @@ export const generateHelp = (programName: string, flags: FlagsObjectType<any>): 
         selectedCategory = commands;
       }
 
-      selectedCategory.push(getRow(flagOptions));
+      selectedCategory.push(getFlagRow(flagOptions));
 
       if (flagOptions.alias === '-h' && flagOptions.flag === '--help') {
         hasHelp = true;
@@ -137,24 +137,24 @@ export const generateHelp = (programName: string, flags: FlagsObjectType<any>): 
   }
 
   if (!hasHelp) {
-    options.push(getRow(helpFlag));
+    options.push(getFlagRow(helpFlag));
   }
 
   if (!hasVersion) {
-    options.push(getRow(versionFlag));
+    options.push(getFlagRow(versionFlag));
   }
 
   if (commands.length > 0) {
-    help += generateTable('Commands:', commands);
+    help += getTable('Commands:', commands);
   }
 
   if (options.length > 0) {
-    help += generateTable('Options:', options);
+    help += getTable('Options:', options);
   }
 
   return help;
 };
 
-export const generateVersion = (version: string): string => {
+export const getVersion = (version: string): string => {
   return `version: ${version}`;
 };

@@ -1,5 +1,5 @@
 import path from 'path';
-import {generateHelp, generateVersion, findVersion, getMappings} from './common';
+import {getHelp, getVersion, findVersion, getMappings} from './common';
 import {ParseFuncType, FlagsObjectType, ErrorType, ParsedResultType} from './types';
 
 export class AutoCLI {
@@ -55,12 +55,12 @@ export class AutoCLI {
       }
 
       if (flagMappings.hasOwnProperty('-h') || flagMappings.hasOwnProperty('--help')) {
-        process.stdout.write(generateHelp(programName, flags));
+        process.stdout.write(getHelp(programName, flags));
         process.exit(0);
       }
 
       if (flagMappings.hasOwnProperty('-v') || flagMappings.hasOwnProperty('--version')) {
-        process.stdout.write(generateVersion(version));
+        process.stdout.write(getVersion(version));
         process.exit(0);
       }
 
