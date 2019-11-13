@@ -1,5 +1,5 @@
 import path from 'path';
-import {getHelp, getVersion, findVersion, getMappings} from './common';
+import {getHelp, getVersion, findVersion, getMappings} from './util';
 import {ParseFuncType, FlagsObjectType, ErrorType, ParsedResultType} from './types';
 
 export class AutoCLI {
