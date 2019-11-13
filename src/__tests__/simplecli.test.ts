@@ -1,4 +1,5 @@
 import {execSync} from 'child_process';
+import flags from './flags';
 
 function cmd(command: string): string {
   let out = '';
@@ -9,3 +10,4 @@ function cmd(command: string): string {
   }
   return out;
 }
+
