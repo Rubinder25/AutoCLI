@@ -9,5 +9,3 @@ function cmd(command: string): string {
   }
   return out;
 }
-
-
