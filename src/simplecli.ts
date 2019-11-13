@@ -77,6 +77,8 @@ export class SimpleCLI {
       return res;
     }
 
+    function interactiveMode(flags) {}
+
     this.parse = parse;
   }
 }
