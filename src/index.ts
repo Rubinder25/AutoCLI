@@ -1,3 +1,3 @@
 export * from './simplecli';
-export {getHelp as generateHelp} from './util';
+export {getHelp} from './util';
 export * from './types';
