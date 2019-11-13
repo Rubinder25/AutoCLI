@@ -117,20 +117,20 @@ export const getHelp = (programName: string, flags: FlagsObjectType<any>): strin
     let selectedCategory: string[][];
 
     if (flags.hasOwnProperty(key)) {
-      const flagOptions = flags[key];
-      if (isOption(flagOptions.alias) && isOption(flagOptions.flag)) {
+      const flagConfig = flags[key];
+      if (isOption(flagConfig.alias) && isOption(flagConfig.flag)) {
         selectedCategory = options;
       } else {
         selectedCategory = commands;
       }
 
-      selectedCategory.push(getFlagRow(flagOptions));
+      selectedCategory.push(getFlagRow(flagConfig));
 
-      if (flagOptions.alias === '-h' && flagOptions.flag === '--help') {
+      if (flagConfig.alias === '-h' && flagConfig.flag === '--help') {
         hasHelp = true;
       }
 
-      if (flagOptions.alias === '-v' && flagOptions.flag === '--version') {
+      if (flagConfig.alias === '-v' && flagConfig.flag === '--version') {
         hasVersion = true;
       }
     }

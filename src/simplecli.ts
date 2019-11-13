@@ -16,57 +16,57 @@ export class SimpleCLI {
       onError: (err: ErrorType) => void,
     ): ParsedResultType<T> {
       const res = {} as ParsedResultType<T>;
-      const flagMappings = getMappings(cliInputArr);
+      const recievedFlags = getMappings(cliInputArr);
 
       for (const key in flags) {
-        if ((flags as any).hasOwnProperty(key)) {
-          const flagOptions = flags[key];
-          let flagVal = undefined;
+        if (flags.hasOwnProperty(key)) {
+          const flagConfig = flags[key];
+          let resVal = undefined;
 
           const indexFlag =
-            flagMappings[flagOptions.flag] !== undefined ? flagMappings[flagOptions.flag] : -1;
+            recievedFlags[flagConfig.flag] !== undefined ? recievedFlags[flagConfig.flag] : -1;
           const indexAlias =
-            flagMappings[flagOptions.alias] !== undefined ? flagMappings[flagOptions.alias] : -1;
+            recievedFlags[flagConfig.alias] !== undefined ? recievedFlags[flagConfig.alias] : -1;
 
-          delete flagMappings[flagOptions.flag];
-          delete flagMappings[flagOptions.alias];
+          delete recievedFlags[flagConfig.flag];
+          delete recievedFlags[flagConfig.alias];
 
           const lastIndex = Math.max(indexFlag, indexAlias);
 
           if (lastIndex !== -1) {
-            flagVal = key;
+            resVal = key;
 
-            if (flagOptions.argument) {
-              flagVal = cliInputArr[lastIndex + 1];
+            if (flagConfig.argument) {
+              resVal = cliInputArr[lastIndex + 1];
 
-              delete flagMappings[cliInputArr[lastIndex + 1]];
+              delete recievedFlags[cliInputArr[lastIndex + 1]];
 
-              if (!flagVal) {
+              if (!resVal) {
                 errors.push({display: `${key} requires a value (err: 101)`, flag: key, code: 101});
               }
             }
           } else {
-            if (flagOptions.required) {
+            if (flagConfig.required) {
               errors.push({display: `${key} is required (err: 102)`, flag: key, code: 102});
             }
           }
-          res[key] = flagVal;
+          res[key] = resVal;
         }
       }
 
-      if (flagMappings.hasOwnProperty('-h') || flagMappings.hasOwnProperty('--help')) {
+      if (recievedFlags.hasOwnProperty('-h') || recievedFlags.hasOwnProperty('--help')) {
         process.stdout.write(getHelp(programName, flags));
         process.exit(0);
       }
 
-      if (flagMappings.hasOwnProperty('-v') || flagMappings.hasOwnProperty('--version')) {
+      if (recievedFlags.hasOwnProperty('-v') || recievedFlags.hasOwnProperty('--version')) {
         process.stdout.write(getVersion(version));
         process.exit(0);
       }
 
-      Object.keys(flagMappings).forEach((key) => {
+      Object.keys(recievedFlags).forEach((key) => {
         errors.push({display: `${key} is not a valid option (err: 103)`, flag: key, code: 103});
-        delete flagMappings[key];
+        delete recievedFlags[key];
       });
 
       errors.forEach((err) => {
