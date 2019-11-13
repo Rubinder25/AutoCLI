@@ -79,37 +79,3 @@ class AutoCLI {
     this.parse = parse;
   }
 }
-
-// =====================================================================================
-type flagTypes = 'delete' | 'pizzaType2' | 'source' | 'order';
-
-const flags: FlagsObjectType<flagTypes> = {
-  delete: {
-    flag: '--delete',
-    alias: '-d',
-    description: 'delete it',
-    argument: false,
-    required: true,
-  },
-  pizzaType2: {
-    flag: '--pizza-type',
-    alias: '-p',
-    description: 'pizza type',
-  },
-  source: {
-    flag: '--source',
-    alias: '-s',
-    description: 'pizza type',
-    argument: true,
-  },
-  order: {
-    flag: 'order',
-    alias: 'o',
-    description: 'order a pizza',
-    argument: false,
-  },
-};
-
-const autoCli = new AutoCLI();
-const b = autoCli.parse(process.argv.slice(2), flags, (err) => console.log(err.display));
-console.log(b.delete);
