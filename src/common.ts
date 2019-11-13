@@ -1,7 +1,19 @@
 import os from 'os';
 import fs from 'fs';
 import path from 'path';
-import {FlagsObjectType} from './types';
+import {FlagsObjectType, FlagConfigType} from './types';
+
+const helpFlag: FlagConfigType = {
+  alias: '-h',
+  flag: '--help',
+  description: 'help',
+};
+
+const versionFlag: FlagConfigType = {
+  alias: '-v',
+  flag: '--version',
+  description: 'version',
+};
 
 const fixedWidth = (s: string, w: number): string => {
   if (s.length === w) {
@@ -19,6 +31,14 @@ const fixedWidth = (s: string, w: number): string => {
   s += spaces;
 
   return s;
+};
+
+const getRow = (flagConfig: FlagConfigType): string[] => {
+  return [
+    `  ${flagConfig.alias},`,
+    ` ${flagConfig.flag} ${flagConfig.required ? '<val>' : ''}`,
+    `  ${flagConfig.description}`,
+  ];
 };
 
 export const isOption = (option: string): boolean => {
@@ -90,6 +110,8 @@ export const generateHelp = (programName: string, flags: FlagsObjectType<any>): 
 
   const commands: string[][] = [];
   const options: string[][] = [];
+  let hasHelp = false;
+  let hasVersion = false;
 
   for (const key in flags) {
     let selectedCategory: string[][];
@@ -102,12 +124,24 @@ export const generateHelp = (programName: string, flags: FlagsObjectType<any>): 
         selectedCategory = commands;
       }
 
-      selectedCategory.push([
-        `  ${flagOptions.alias},`,
-        ` ${flagOptions.flag} ${flagOptions.required ? '<val>' : ''}`,
-        `  ${flagOptions.description}`,
-      ]);
+      selectedCategory.push(getRow(flagOptions));
+
+      if (flagOptions.alias === '-h' && flagOptions.flag === '--help') {
+        hasHelp = true;
+      }
+
+      if (flagOptions.alias === '-v' && flagOptions.flag === '--version') {
+        hasVersion = true;
+      }
     }
+  }
+
+  if (!hasHelp) {
+    options.push(getRow(helpFlag));
+  }
+
+  if (!hasVersion) {
+    options.push(getRow(versionFlag));
   }
 
   if (commands.length > 0) {
