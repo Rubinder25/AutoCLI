@@ -2,7 +2,7 @@ import path from 'path';
 import {generateHelp, generateVersion, findVersion, getMappings} from './common';
 import {ParseFuncType, FlagsObjectType, ErrorType, ParsedResultType} from './types';
 
-class AutoCLI {
+export class AutoCLI {
   public parse: ParseFuncType;
 
   public constructor(psProgramName?: string, psVersion?: string) {
