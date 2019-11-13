@@ -54,7 +54,7 @@ export class SimpleCLI {
         }
       }
       
-      // process recievedFlags which are not present in the flags object
+      // process recievedFlags which were not present in the flags object
       if (recievedFlags.hasOwnProperty('-h') || recievedFlags.hasOwnProperty('--help')) {
         process.stdout.write(getHelp(programName, flags));
         process.exit(0);
