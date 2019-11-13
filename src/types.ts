@@ -13,7 +13,7 @@ export type FlagsObjectType<T extends any> = {
 export type ParsedResultType<T> = {[key in keyof T]: string | undefined};
 
 export interface ErrorType {
-  display: string;
+  message: string;
   flag: string;
   code: number;
 }
