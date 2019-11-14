@@ -24,3 +24,7 @@ export type ParseFuncType = <T extends FlagsObjectType<any>>(
   flags: T,
   onError: (err: ErrorType) => void,
 ) => ParsedResultType<T>;
+
+export type InteractiveModeQAFuncType = <T extends FlagsObjectType<any>>(
+  flags: T,
+) => Promise<ParsedResultType<T>>;

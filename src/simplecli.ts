@@ -5,10 +5,13 @@ import {
   FlagsObjectType,
   ErrorType,
   ParsedResultType,
+  InteractiveModeQAFuncType,
 } from './types';
+import {getSingleFlagInput} from './io';
 
 export class SimpleCLI {
   public parse: ParseFuncType;
+  public interactiveModeQA: InteractiveModeQAFuncType;
 
   public constructor(psProgramName?: string, psVersion?: string) {
     const programName = psProgramName || path.basename(process.argv[1]);
@@ -104,14 +107,23 @@ export class SimpleCLI {
       return res;
     }
 
-    function interactiveMode<T extends FlagsObjectType<any>>(
+    async function interactiveModeQA<T extends FlagsObjectType<any>>(
       flags: T,
-    ): ParsedResultType<T> {
+    ): Promise<ParsedResultType<T>> {
       const res = {} as ParsedResultType<T>;
+
+      for (const key in flags) {
+        if (flags.hasOwnProperty(key)) {
+          const flagConfig = flags[key];
+          const resVal = await getSingleFlagInput(key, flagConfig);
+          res[key] = resVal;
+        }
+      }
 
       return res;
     }
 
     this.parse = parse;
+    this.interactiveModeQA = interactiveModeQA;
   }
 }
