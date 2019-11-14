@@ -104,7 +104,10 @@ export const getTable = (header: string, data: string[][]): string => {
   return table;
 };
 
-export const getHelp = (programName: string, flags: FlagsObjectType<any>): string => {
+export const getHelp = (
+  programName: string,
+  flags: FlagsObjectType<any>,
+): string => {
   const EOL = os.EOL;
   let help = `${EOL}Usage: ${programName} [options]${EOL}`;
 
