@@ -5,7 +5,6 @@ import {FlagConfigType} from './types';
 function getQuery(query: string, showAstrisk: boolean): Promise<string> {
   return new Promise((resolve) => {
     let Writable = stream.Writable;
-    showAstrisk;
 
     let muteOutput = false;
 
