@@ -1,7 +1,6 @@
 import {execSync} from 'child_process';
 import {FlagsObjectType, FlagConfigType, ParsedResultType} from '../types';
 import {SimpleCLI} from '../simplecli';
-import {EEXIST} from 'constants';
 
 type TestFlagObjType = FlagsObjectType<'test'>;
 
