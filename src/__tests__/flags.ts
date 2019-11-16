@@ -7,6 +7,7 @@ const flags: FlagsObjectType<flagKeys> = {
     alias: 's',
     flag: 'sandwich',
     description: 'Sandwich',
+    default: 'Chicken Classic',
   },
   wrap: {
     alias: 'w',

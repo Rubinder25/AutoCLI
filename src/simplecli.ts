@@ -7,7 +7,7 @@ import {
   ParsedResultType,
   InteractiveModeQAFuncType,
 } from './types';
-import {getSingleFlagInput} from './io';
+import {getSingleFlagInput} from './interactiveModeQA';
 
 export class SimpleCLI {
   public parse: ParseFuncType;

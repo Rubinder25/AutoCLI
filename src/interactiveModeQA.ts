@@ -39,6 +39,18 @@ export async function getSingleFlagInput(
   flagConfig: FlagConfigType,
 ): Promise<string | undefined> {
   let res = undefined;
-  res = await getQuery(key, flagConfig.showAstrisk !== true);
+  const defaultValue = (flagConfig as any).hasOwnProperty('default')
+    ? flagConfig.default
+    : undefined;
+  const defaultValueString =
+    defaultValue !== undefined ? `(${defaultValue})` : '';
+
+  const queryString = `${key}: ${defaultValueString}`;
+  res = await getQuery(queryString, flagConfig.showAstrisk !== true);
+
+  if (res === '' && defaultValue) {
+    res = defaultValue;
+  }
+
   return res;
 }

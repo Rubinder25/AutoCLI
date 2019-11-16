@@ -2,6 +2,7 @@ export interface FlagConfigType {
   flag: string;
   alias: string;
   description: string;
+  default?: string; // default should be false
   argument?: boolean; // default should be false
   required?: boolean; // default should be false
   showAstrisk?: boolean; // default should be false
