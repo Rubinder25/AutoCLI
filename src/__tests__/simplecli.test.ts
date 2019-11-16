@@ -181,4 +181,25 @@ describe('Test- Parse Configs:', () => {
       expect(errCodes.length).toBe(0);
     });
   });
+
+  test('argument:true | required:true | Invalid Arg', () => {
+    testFlagObj = {
+      test: {
+        ...defaultFlagConfig,
+        argument: true,
+        required: true,
+      },
+    };
+
+    inputs = [
+      ['-t', 'testArg', '-i'],
+      ['--test', 'testArg', '--invalid'],
+    ];
+    inputs.forEach((input) => {
+      [res, errCodes] = parse(input, testFlagObj);
+      expect(res.test).toBe('testArg');
+      expect(errCodes.length).toBe(1);
+      expect(errCodes[0]).toBe(103);
+    });
+  });
 });
