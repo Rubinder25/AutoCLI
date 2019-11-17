@@ -1,8 +1,16 @@
 import readline from 'readline';
 import stream, {Readable} from 'stream';
 import {FlagConfigType} from './types';
-// TODO extend interface
-function getQuery(query: string, showAstrisk: boolean): Promise<string> {
+
+/**
+ * returns user input,
+ * in case the user doesn't enter anything,
+ * an empty string is returned
+ * @param query string
+ * @param showAstrisk boolean
+ * @returns string
+ */
+function getInput(query: string, showAstrisk: boolean): Promise<string> {
   return new Promise((resolve) => {
     let Writable = stream.Writable;
 
@@ -17,11 +25,6 @@ function getQuery(query: string, showAstrisk: boolean): Promise<string> {
           process.stdout.write(chunk);
         }
         cb();
-      },
-      final(cb) {
-        if (mutedOutput) {
-          cb();
-        }
       },
     });
 
@@ -48,17 +51,35 @@ export async function getSingleFlagInput(
   flagConfig: FlagConfigType,
 ): Promise<string | undefined> {
   let res = undefined;
-  const defaultValue = (flagConfig as any).hasOwnProperty('default')
-    ? flagConfig.default
-    : undefined;
-  const defaultValueString =
-    defaultValue !== undefined ? `(${defaultValue})` : '';
+  const defaultValue = flagConfig.default;
+  let secondaryString = '';
 
-  const queryString = `${key}: ${defaultValueString}`;
-  res = await getQuery(queryString, flagConfig.showAstrisk === true);
+  if (defaultValue) {
+    secondaryString = defaultValue !== undefined ? `(${defaultValue})` : '';
+  }
 
-  if (res === '' && defaultValue) {
-    res = defaultValue;
+  // if flag is of type boolean then it can't have a default value
+  if (!flagConfig.argument) {
+    secondaryString = '(y/n)';
+  }
+
+  const queryString = `${key}: ${secondaryString}`;
+  res = await getInput(queryString, flagConfig.showAstrisk || false);
+
+  if (res === '') {
+    if (defaultValue) {
+      res = defaultValue;
+    } else {
+      res = undefined;
+    }
+  }
+
+  if (!flagConfig.argument) {
+    if (res && (res.toLowerCase() === 'y' || res.toLowerCase() === 'yes')) {
+      res = key;
+    } else {
+      res = undefined;
+    }
   }
 
   return res;
