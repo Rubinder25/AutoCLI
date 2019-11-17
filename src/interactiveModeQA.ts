@@ -51,14 +51,8 @@ export async function getSingleFlagInput(
   flagConfig: FlagConfigType,
 ): Promise<string | undefined> {
   let res = undefined;
-  const defaultValue = flagConfig.default;
   let secondaryString = '';
 
-  if (defaultValue) {
-    secondaryString = defaultValue !== undefined ? `(${defaultValue})` : '';
-  }
-
-  // if flag is of type boolean then it can't have a default value
   if (!flagConfig.argument) {
     secondaryString = '(y/n)';
   }
@@ -67,11 +61,7 @@ export async function getSingleFlagInput(
   res = await getInput(queryString, flagConfig.showAstrisk || false);
 
   if (res === '') {
-    if (defaultValue) {
-      res = defaultValue;
-    } else {
-      res = undefined;
-    }
+    res = undefined;
   }
 
   if (!flagConfig.argument) {
