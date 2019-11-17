@@ -49,7 +49,7 @@ export class SimpleCLI {
             resVal = key;
 
             if (flagConfig.argument) {
-              resVal = cliInputArr[lastIndex + 1];
+              resVal = cliInputArr[lastIndex + 1] || flagConfig.default;
 
               delete recievedFlags[cliInputArr[lastIndex + 1]];
 
