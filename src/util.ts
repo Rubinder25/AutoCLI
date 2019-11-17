@@ -170,7 +170,6 @@ export const getInput = (
 ): Promise<string> => {
   return new Promise((resolve) => {
     let Writable = stream.Writable;
-
     let mutedOutput = false;
 
     let outputStream = new Writable({
