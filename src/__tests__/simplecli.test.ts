@@ -34,7 +34,7 @@ const defaultFlagConfig: FlagConfigType = {
   description: 'test flag',
 };
 
-describe('Test- Parse Configs:', () => {
+describe('Test - Parse Configs:', () => {
   let testFlagObj: TestFlagObjType;
   let res: ParsedResultType<TestFlagObjType>;
   let errCodes: number[];
