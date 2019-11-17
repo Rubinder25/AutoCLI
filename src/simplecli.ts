@@ -1,5 +1,5 @@
 import path from 'path';
-import {getHelp, getVersion, findVersion, getMappings} from './util';
+import {getHelp, getVersion, findVersion, getMappings, getInput} from './util';
 import {
   ParseFuncType,
   FlagsObjectType,
@@ -7,11 +7,11 @@ import {
   ParsedResultType,
   InteractiveModeQAFuncType,
 } from './types';
-import {getSingleFlagInput} from './interactiveModeQA';
+import {Chalk} from 'chalk';
 
 export class SimpleCLI {
   public parse: ParseFuncType;
-  public interactiveModeQA: InteractiveModeQAFuncType;
+  public askQA: InteractiveModeQAFuncType;
 
   public constructor(psProgramName?: string, psVersion?: string) {
     const programName = psProgramName || path.basename(process.argv[1]);
@@ -107,15 +107,41 @@ export class SimpleCLI {
       return res;
     }
 
-    async function interactiveModeQA<T extends FlagsObjectType<any>>(
+    async function askQA<T extends FlagsObjectType<any>>(
       flags: T,
+      color: Chalk,
     ): Promise<ParsedResultType<T>> {
       const res = {} as ParsedResultType<T>;
 
       for (const key in flags) {
         if (flags.hasOwnProperty(key)) {
           const flagConfig = flags[key];
-          const resVal = await getSingleFlagInput(key, flagConfig);
+          let resVal = undefined;
+          let secondaryString = '';
+
+          if (!flagConfig.argument) {
+            secondaryString = ' (y/n)';
+          }
+
+          let queryString = `${key}${secondaryString}:`;
+          queryString = color ? color(queryString) : queryString;
+
+          resVal = await getInput(queryString, flagConfig.showAstrisk || false);
+
+          if (resVal === '') {
+            resVal = undefined;
+          }
+
+          if (!flagConfig.argument) {
+            if (
+              resVal &&
+              (resVal.toLowerCase() === 'y' || resVal.toLowerCase() === 'yes')
+            ) {
+              resVal = key;
+            } else {
+              resVal = undefined;
+            }
+          }
           res[key] = resVal;
         }
       }
@@ -124,6 +150,6 @@ export class SimpleCLI {
     }
 
     this.parse = parse;
-    this.interactiveModeQA = interactiveModeQA;
+    this.askQA = askQA;
   }
 }

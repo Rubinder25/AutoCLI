@@ -1,6 +1,8 @@
 import os from 'os';
 import fs from 'fs';
 import path from 'path';
+import readline from 'readline';
+import stream from 'stream';
 import {FlagsObjectType, FlagConfigType} from './types';
 
 const helpFlag: FlagConfigType = {
@@ -160,4 +162,51 @@ export const getHelp = (
 
 export const getVersion = (version: string): string => {
   return `version: ${version}`;
+};
+
+/**
+ * returns user input,
+ * in case the user doesn't enter anything,
+ * an empty string is returned
+ * @param query string
+ * @param showAstrisk boolean
+ * @returns string
+ */
+export const getInput = (
+  query: string,
+  showAstrisk: boolean,
+): Promise<string> => {
+  return new Promise((resolve) => {
+    let Writable = stream.Writable;
+
+    let mutedOutput = false;
+
+    let outputStream = new Writable({
+      write(chunk, _enc, cb) {
+        chunk = chunk.toString('utf8');
+        if (mutedOutput) {
+          process.stdout.write('*');
+        } else {
+          process.stdout.write(chunk);
+        }
+        cb();
+      },
+    });
+
+    let rl = readline.createInterface({
+      input: process.stdin,
+      output: outputStream,
+      terminal: true,
+    });
+
+    rl.question(`${query} `, function(userInput: string) {
+      resolve(userInput);
+      if (showAstrisk) {
+        process.stdout.write('\n');
+      }
+      rl.close();
+    });
+
+    mutedOutput = showAstrisk;
+  });
 };
