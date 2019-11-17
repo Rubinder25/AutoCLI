@@ -1,21 +1,26 @@
 import readline from 'readline';
-import stream from 'stream';
+import stream, {Readable} from 'stream';
 import {FlagConfigType} from './types';
 // TODO extend interface
 function getQuery(query: string, showAstrisk: boolean): Promise<string> {
   return new Promise((resolve) => {
     let Writable = stream.Writable;
 
-    let muteOutput = false;
+    let mutedOutput = false;
 
     let outputStream = new Writable({
-      write(chunk) {
+      write(chunk, _enc, cb) {
         chunk = chunk.toString('utf8');
-
-        if (!muteOutput) {
-          process.stdout.write(chunk);
-        } else {
+        if (mutedOutput) {
           process.stdout.write('*');
+        } else {
+          process.stdout.write(chunk);
+        }
+        cb();
+      },
+      final(cb) {
+        if (mutedOutput) {
+          cb();
         }
       },
     });
@@ -23,14 +28,18 @@ function getQuery(query: string, showAstrisk: boolean): Promise<string> {
     let rl = readline.createInterface({
       input: process.stdin,
       output: outputStream,
+      terminal: true,
     });
 
     rl.question(`${query} `, function(userInput: string) {
       resolve(userInput);
+      if (showAstrisk) {
+        process.stdout.write('\n');
+      }
       rl.close();
     });
 
-    muteOutput = showAstrisk;
+    mutedOutput = showAstrisk;
   });
 }
 
@@ -46,7 +55,7 @@ export async function getSingleFlagInput(
     defaultValue !== undefined ? `(${defaultValue})` : '';
 
   const queryString = `${key}: ${defaultValueString}`;
-  res = await getQuery(queryString, flagConfig.showAstrisk !== true);
+  res = await getQuery(queryString, flagConfig.showAstrisk === true);
 
   if (res === '' && defaultValue) {
     res = defaultValue;
