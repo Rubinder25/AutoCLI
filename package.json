@@ -24,5 +24,8 @@
     "eslint": "^6.6.0",
     "jest": "^24.9.0",
     "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0"
   }
 }
