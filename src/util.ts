@@ -164,14 +164,6 @@ export const getVersion = (version: string): string => {
   return `version: ${version}`;
 };
 
-/**
- * returns user input,
- * in case the user doesn't enter anything,
- * an empty string is returned
- * @param query string
- * @param showAstrisk boolean
- * @returns string
- */
 export const getInput = (
   query: string,
   showAstrisk: boolean,
