@@ -1,5 +1,12 @@
 import path from 'path';
-import {getHelp, getVersion, findVersion, getMappings, getInput} from './util';
+import {
+  getHelp,
+  getVersion,
+  findVersion,
+  getMappings,
+  getInput,
+  clearLine,
+} from './util';
 import {
   ParseFuncType,
   FlagsObjectType,
@@ -7,7 +14,7 @@ import {
   ParsedResultType,
   InteractiveModeQAFuncType,
 } from './types';
-import {Chalk} from 'chalk';
+import chalk, {Chalk} from 'chalk';
 
 export class SimpleCLI {
   public parse: ParseFuncType;
@@ -117,31 +124,47 @@ export class SimpleCLI {
         if (flags.hasOwnProperty(key)) {
           const flagConfig = flags[key];
           let resVal = undefined;
-          let secondaryString = '';
+          let askCount = 0;
+          let inputVal = '';
 
-          if (!flagConfig.argument) {
-            secondaryString = ' (y/n)';
-          }
+          do {
+            let secondaryString = '';
 
-          let queryString = `${key}${secondaryString}:`;
-          queryString = color ? color(queryString) : queryString;
+            if (!flagConfig.argument) {
+              secondaryString += ' (y/n)';
+            }
 
-          resVal = await getInput(queryString, flagConfig.showAstrisk || false);
+            if (askCount > 0) {
+              clearLine();
+              secondaryString += ` ${chalk.yellow('(required)')}`;
+            }
 
-          if (resVal === '') {
-            resVal = undefined;
-          }
+            let queryString = `${key}${secondaryString}:`;
+            queryString = color ? color(queryString) : queryString;
+            inputVal = await getInput(
+              queryString,
+              flagConfig.showAstrisk || false,
+            );
 
-          if (!flagConfig.argument) {
-            if (
-              resVal &&
-              (resVal.toLowerCase() === 'y' || resVal.toLowerCase() === 'yes')
-            ) {
-              resVal = key;
-            } else {
+            resVal = inputVal;
+
+            if (resVal === '') {
               resVal = undefined;
             }
-          }
+
+            if (!flagConfig.argument) {
+              if (
+                resVal &&
+                (resVal.toLowerCase() === 'y' || resVal.toLowerCase() === 'yes')
+              ) {
+                resVal = key;
+              } else {
+                resVal = undefined;
+              }
+            }
+            askCount++;
+          } while (inputVal === '' && flagConfig.required);
+
           res[key] = resVal;
         }
       }
