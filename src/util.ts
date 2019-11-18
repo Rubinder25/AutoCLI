@@ -1,6 +1,8 @@
 import os from 'os';
 import fs from 'fs';
 import path from 'path';
+import readline from 'readline';
+import stream from 'stream';
 import {FlagsObjectType, FlagConfigType} from './types';
 
 const helpFlag: FlagConfigType = {
@@ -104,7 +106,10 @@ export const getTable = (header: string, data: string[][]): string => {
   return table;
 };
 
-export const getHelp = (programName: string, flags: FlagsObjectType<any>): string => {
+export const getHelp = (
+  programName: string,
+  flags: FlagsObjectType<any>,
+): string => {
   const EOL = os.EOL;
   let help = `${EOL}Usage: ${programName} [options]${EOL}`;
 
@@ -157,4 +162,48 @@ export const getHelp = (programName: string, flags: FlagsObjectType<any>): strin
 
 export const getVersion = (version: string): string => {
   return `version: ${version}`;
+};
+
+export const getInput = (
+  query: string,
+  showAstrisk: boolean,
+): Promise<string> => {
+  return new Promise((resolve) => {
+    let Writable = stream.Writable;
+    let mutedOutput = false;
+
+    let outputStream = new Writable({
+      write(chunk, _enc, cb) {
+        chunk = chunk.toString('utf8');
+        if (mutedOutput) {
+          process.stdout.write('*');
+        } else {
+          process.stdout.write(chunk);
+        }
+        cb();
+      },
+    });
+
+    let rl = readline.createInterface({
+      input: process.stdin,
+      output: outputStream,
+      terminal: true,
+    });
+
+    rl.question(`${query} `, function(userInput: string) {
+      resolve(userInput);
+      if (showAstrisk) {
+        process.stdout.write('\n');
+      }
+      rl.close();
+    });
+
+    mutedOutput = showAstrisk;
+  });
+};
+
+export const clearLine = () => {
+  readline.moveCursor(process.stdout, 0, -1);
+  readline.cursorTo(process.stdout, 0);
+  readline.clearScreenDown(process.stdout);
 };
