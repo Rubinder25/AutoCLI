@@ -61,12 +61,20 @@ export class SimpleCLI {
               delete recievedFlags[cliInputArr[lastIndex + 1]];
 
               if (!resVal) {
-                errors.push({display: `${key} requires a value (err: 101)`, flag: key, code: 101});
+                errors.push({
+                  display: `${key} requires a value (err: 101)`,
+                  flag: key,
+                  code: 101,
+                });
               }
             }
           } else {
             if (flagConfig.required) {
-              errors.push({display: `${key} is required (err: 102)`, flag: key, code: 102});
+              errors.push({
+                display: `${key} is required (err: 102)`,
+                flag: key,
+                code: 102,
+              });
             }
           }
           res[key] = resVal;
@@ -91,7 +99,11 @@ export class SimpleCLI {
       }
 
       Object.keys(recievedFlags).forEach((key) => {
-        errors.push({display: `${key} is not a valid option (err: 103)`, flag: key, code: 103});
+        errors.push({
+          display: `${key} is not a valid option (err: 103)`,
+          flag: key,
+          code: 103,
+        });
         delete recievedFlags[key];
       });
 
