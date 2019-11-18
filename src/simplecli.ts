@@ -145,7 +145,6 @@ export class SimpleCLI {
               queryString,
               flagConfig.showAstrisk || false,
             );
-
             resVal = inputVal;
 
             if (resVal === '') {
