@@ -1,6 +1,7 @@
 import {execSync} from 'child_process';
 import {FlagsObjectType, FlagConfigType, ParsedResultType} from '../types';
 import {SimpleCLI} from '../simplecli';
+import * as utils from '../util';
 
 type TestFlagObjType = FlagsObjectType<'test'>;
 
@@ -34,7 +35,7 @@ const defaultFlagConfig: FlagConfigType = {
   description: 'test flag',
 };
 
-describe('Test - Parse Configs:', () => {
+describe('Test - parse():', () => {
   let testFlagObj: TestFlagObjType;
   let res: ParsedResultType<TestFlagObjType>;
   let errCodes: number[];
