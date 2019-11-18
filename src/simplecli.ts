@@ -109,7 +109,7 @@ export class SimpleCLI {
 
     async function askQA<T extends FlagsObjectType<any>>(
       flags: T,
-      color: Chalk,
+      color?: Chalk,
     ): Promise<ParsedResultType<T>> {
       const res = {} as ParsedResultType<T>;
 
