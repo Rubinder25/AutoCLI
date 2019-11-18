@@ -19,5 +19,32 @@ const response = program.parse(process.argv.slice(2), flags, (err) => console.lo
 
 ## Flags Object
 
+The flag object will contain definitions of all the commands and flags
 
+```js
+const flags = {
+ pepper: {
+    alias: '-p',
+    flag: '--pepper',
+    description: 'pepper',
+  },
+  salt: {
+    alias: '-s',
+    flag: '--salt',
+    description: 'salt',
+  },
+  sauce: {
+    alias: '-o',
+    flag: '--sauce',
+    description: 'sauce',
+    argument: true,
+  },
+};
+
+const response = program.parse(process.argv.slice(2), flags, (err) => console.log(err.display));
+
+// the response object will have all properties of flags attached to it with values
+
+console.lo
+```
 
