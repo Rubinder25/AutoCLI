@@ -1,7 +1,5 @@
-import {execSync} from 'child_process';
 import {FlagsObjectType, FlagConfigType, ParsedResultType} from '../types';
 import {SimpleCLI} from '../simplecli';
-import * as utils from '../util';
 
 type TestFlagObjType = FlagsObjectType<'test'>;
 
@@ -18,16 +16,6 @@ const parse = (
 
   return [res, errCodes];
 };
-
-function cmd(command: string): string {
-  let out = '';
-  try {
-    out = String(execSync(command));
-  } catch (e) {
-    console.log('An error had occurred while processing the command');
-  }
-  return out;
-}
 
 const defaultFlagConfig: FlagConfigType = {
   alias: '-t',
