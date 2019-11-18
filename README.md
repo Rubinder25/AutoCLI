@@ -44,7 +44,6 @@ const flags = {
 const response = program.parse(process.argv.slice(2), flags, (err) => console.log(err.display));
 
 // the response object will have all properties of flags attached to it with values
-
-console.lo
+console.log(response);
 ```
 
