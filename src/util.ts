@@ -202,15 +202,6 @@ export const getInput = (
   });
 };
 
-export const isBooleanVal = (val: string) => {
-  val = val.toLowerCase();
-  if (val === 'y' || val === 'yes' || val === 'n' || val === 'no') {
-    return true;
-  }
-
-  return false;
-};
-
 export const clearLine = () => {
   readline.moveCursor(process.stdout, 0, -1);
   readline.cursorTo(process.stdout, 0);
