@@ -1,9 +1,12 @@
+import {Chalk} from 'chalk';
+
 export interface FlagConfigType {
   flag: string;
   alias: string;
   description: string;
   argument?: boolean; // default should be false
   required?: boolean; // default should be false
+  showAstrisk?: boolean; // default should be false
 }
 
 export type FlagsObjectType<T extends any> = {
@@ -23,3 +26,8 @@ export type ParseFuncType = <T extends FlagsObjectType<any>>(
   flags: T,
   onError: (err: ErrorType) => void,
 ) => ParsedResultType<T>;
+
+export type InteractiveModeQAFuncType = <T extends FlagsObjectType<any>>(
+  flags: T,
+  color?: Chalk,
+) => Promise<ParsedResultType<T>>;
