@@ -96,8 +96,9 @@ describe('Test - parse():', () => {
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('test');
-      expect(errCodes.length).toBe(1);
-      expect(errCodes[0]).toBe(103);
+      expect(res.args.length).toBe(1);
+      expect(res.args[0]).toBe('testArg');
+      expect(errCodes.length).toBe(0);
     });
   });
 
