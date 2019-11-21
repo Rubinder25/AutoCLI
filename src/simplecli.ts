@@ -77,7 +77,7 @@ export class SimpleCLI {
               });
             }
           }
-          res[key] = resVal;
+          res[key] = resVal as any;
         }
       }
 
@@ -164,7 +164,7 @@ export class SimpleCLI {
             askCount++;
           } while (inputVal === '' && flagConfig.required);
 
-          res[key] = resVal;
+          res[key] = resVal as any;
         }
       }
 
