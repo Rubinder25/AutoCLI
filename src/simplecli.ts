@@ -107,18 +107,24 @@ export class SimpleCLI {
       }
 
       Object.keys(recievedFlags).forEach((key) => {
-        if (recievedFlags[key] < flagsLimit && isOption(key)) {
-          errors.push({
-            display: `${key} is not a valid option (err: 103)`,
-            flag: key,
-            code: 103,
-          });
-        } else {
-          res.args.push(key);
+        if (recievedFlags[key] < flagsLimit) {
+          if (isOption(key)) {
+            errors.push({
+              display: `${key} is not a valid option (err: 103)`,
+              flag: key,
+              code: 103,
+            });
+          } else {
+            res.args.push(key);
+          }
         }
 
         delete recievedFlags[key];
       });
+
+      for (let i = flagsLimit + 1; i < cliInputArr.length; i++) {
+        res.args.push(cliInputArr[i]);
+      }
 
       errors.forEach((err) => {
         onError(err);
