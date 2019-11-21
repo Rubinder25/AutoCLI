@@ -6,6 +6,7 @@ import {
   getMappings,
   getInput,
   clearLine,
+  isOption,
 } from './util';
 import {
   ParseFuncType,
@@ -31,7 +32,14 @@ export class SimpleCLI {
       onError: (err: ErrorType) => void,
     ): ParsedResultType<T> {
       const res = {} as ParsedResultType<T>;
+      res.args = [];
+      const eof = '--';
+      const flagsLimit = cliInputArr.includes(eof)
+        ? cliInputArr.indexOf(eof)
+        : cliInputArr.length;
+
       const recievedFlags = getMappings(cliInputArr);
+      delete recievedFlags[eof];
 
       for (const key in flags) {
         if (flags.hasOwnProperty(key)) {
@@ -52,7 +60,7 @@ export class SimpleCLI {
 
           const lastIndex = Math.max(indexFlag, indexAlias);
 
-          if (lastIndex !== -1) {
+          if (lastIndex !== -1 && lastIndex < flagsLimit) {
             resVal = key;
 
             if (flagConfig.argument) {
@@ -99,11 +107,16 @@ export class SimpleCLI {
       }
 
       Object.keys(recievedFlags).forEach((key) => {
-        errors.push({
-          display: `${key} is not a valid option (err: 103)`,
-          flag: key,
-          code: 103,
-        });
+        if (recievedFlags[key] < flagsLimit && isOption(key)) {
+          errors.push({
+            display: `${key} is not a valid option (err: 103)`,
+            flag: key,
+            code: 103,
+          });
+        } else {
+          res.args.push(key);
+        }
+
         delete recievedFlags[key];
       });
 
