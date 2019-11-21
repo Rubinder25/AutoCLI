@@ -33,7 +33,7 @@ export class SimpleCLI {
     ): ParsedResultType<T> {
       const res = {} as ParsedResultType<T>;
       res.args = [];
-      const eof = '--';
+      const eof = '--'; // end of flags
       const flagsLimit = cliInputArr.includes(eof)
         ? cliInputArr.indexOf(eof)
         : cliInputArr.length;
