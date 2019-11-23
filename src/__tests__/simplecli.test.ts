@@ -1,5 +1,4 @@
-import {FlagsObjectType, FlagConfigType, ParsedResultType} from '../types';
-import {SimpleCLI} from '../simplecli';
+import {FlagConfigType, ParsedResultType} from '../types';
 import {TestFlagObjType, parse} from './testutil';
 
 const defaultFlagConfig: FlagConfigType = {
