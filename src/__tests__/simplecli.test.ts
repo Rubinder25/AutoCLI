@@ -1,21 +1,6 @@
 import {FlagsObjectType, FlagConfigType, ParsedResultType} from '../types';
 import {SimpleCLI} from '../simplecli';
-
-type TestFlagObjType = FlagsObjectType<'test'>;
-
-const parse = (
-  input: string[],
-  testFlagObj: TestFlagObjType,
-): [ParsedResultType<TestFlagObjType>, number[]] => {
-  const simpleCLI = new SimpleCLI('Test Program', '1.0.0');
-  let errCodes: number[] = [];
-
-  const res = simpleCLI.parse(input, testFlagObj, (err) => {
-    errCodes.push(err.code);
-  });
-
-  return [res, errCodes];
-};
+import {TestFlagObjType, parse} from './testutil';
 
 const defaultFlagConfig: FlagConfigType = {
   alias: '-t',
@@ -89,10 +74,7 @@ describe('Test - parse():', () => {
       expect(errCodes.length).toBe(0);
     });
 
-    inputs = [
-      ['-t', 'testArg'],
-      ['--test', 'testArg'],
-    ];
+    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('test');
@@ -125,10 +107,7 @@ describe('Test - parse():', () => {
       expect(errCodes[0]).toBe(101);
     });
 
-    inputs = [
-      ['-t', 'testArg'],
-      ['--test', 'testArg'],
-    ];
+    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
@@ -161,10 +140,7 @@ describe('Test - parse():', () => {
       expect(errCodes[0]).toBe(101);
     });
 
-    inputs = [
-      ['-t', 'testArg'],
-      ['--test', 'testArg'],
-    ];
+    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
@@ -181,10 +157,7 @@ describe('Test - parse():', () => {
       },
     };
 
-    inputs = [
-      ['-t', 'testArg', '-i'],
-      ['--test', 'testArg', '--invalid'],
-    ];
+    inputs = [['-t', 'testArg', '-i'], ['--test', 'testArg', '--invalid']];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
