@@ -1,21 +1,5 @@
-import {FlagsObjectType, FlagConfigType, ParsedResultType} from '../types';
-import {SimpleCLI} from '../simplecli';
-
-type TestFlagObjType = FlagsObjectType<'test'>;
-
-const parse = (
-  input: string[],
-  testFlagObj: TestFlagObjType,
-): [ParsedResultType<TestFlagObjType>, number[]] => {
-  const simpleCLI = new SimpleCLI('Test Program', '1.0.0');
-  let errCodes: number[] = [];
-
-  const res = simpleCLI.parse(input, testFlagObj, (err) => {
-    errCodes.push(err.code);
-  });
-
-  return [res, errCodes];
-};
+import {FlagConfigType, ParsedResultType} from '../types';
+import {TestFlagObjType, parse} from './testutil';
 
 const defaultFlagConfig: FlagConfigType = {
   alias: '-t',
@@ -89,15 +73,13 @@ describe('Test - parse():', () => {
       expect(errCodes.length).toBe(0);
     });
 
-    inputs = [
-      ['-t', 'testArg'],
-      ['--test', 'testArg'],
-    ];
+    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('test');
-      expect(errCodes.length).toBe(1);
-      expect(errCodes[0]).toBe(103);
+      expect(res.args.length).toBe(1);
+      expect(res.args[0]).toBe('testArg');
+      expect(errCodes.length).toBe(0);
     });
   });
 
@@ -124,10 +106,7 @@ describe('Test - parse():', () => {
       expect(errCodes[0]).toBe(101);
     });
 
-    inputs = [
-      ['-t', 'testArg'],
-      ['--test', 'testArg'],
-    ];
+    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
@@ -160,10 +139,7 @@ describe('Test - parse():', () => {
       expect(errCodes[0]).toBe(101);
     });
 
-    inputs = [
-      ['-t', 'testArg'],
-      ['--test', 'testArg'],
-    ];
+    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
@@ -180,15 +156,29 @@ describe('Test - parse():', () => {
       },
     };
 
-    inputs = [
-      ['-t', 'testArg', '-i'],
-      ['--test', 'testArg', '--invalid'],
-    ];
+    inputs = [['-t', 'testArg', '-i'], ['--test', 'testArg', '--invalid']];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
       expect(errCodes.length).toBe(1);
       expect(errCodes[0]).toBe(103);
+    });
+  });
+
+  test("args after '--'", () => {
+    testFlagObj = {
+      test: {
+        ...defaultFlagConfig,
+      },
+    };
+
+    inputs = [['-t', 'arg1', '--', '-arg2', '--arg3', 'arg4']];
+    inputs.forEach((input) => {
+      [res, errCodes] = parse(input, testFlagObj);
+      expect(res.test).toBe('test');
+      expect(errCodes.length).toBe(0);
+      expect(res.args.length).toBe(4);
+      expect(res.args).toEqual(['arg1', '-arg2', '--arg3', 'arg4']);
     });
   });
 });

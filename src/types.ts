@@ -13,7 +13,9 @@ export type FlagsObjectType<T extends any> = {
   [key in T]: FlagConfigType;
 };
 
-export type ParsedResultType<T> = {[key in keyof T]: string | undefined};
+export type ParsedResultType<T> = {[key in keyof T]: string | undefined} & {
+  args: string[];
+};
 
 export interface ErrorType {
   display: string;
