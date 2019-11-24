@@ -38,8 +38,8 @@ const fixedWidth = (s: string, w: number): string => {
 const getFlagRow = (flagConfig: FlagConfigType): string[] => {
   return [
     `  ${flagConfig.alias},`,
-    ` ${flagConfig.flag} ${flagConfig.required ? '<val>' : ''}`,
-    `  ${flagConfig.description}`,
+    `${flagConfig.flag} ${flagConfig.required ? '<val>' : ''}`,
+    ` ${flagConfig.description}`,
   ];
 };
 
@@ -92,7 +92,8 @@ export const getTable = (header: string, data: string[][]): string => {
 
   data.forEach((row) => {
     row.forEach((cell, j) => {
-      nColWidth[j] = Math.max(nColWidth[j], cell.length);
+      let cellWidth = j < row.length - 1 ? cell.length + 1 : cell.length;
+      nColWidth[j] = Math.max(nColWidth[j], cellWidth);
     });
   });
 
