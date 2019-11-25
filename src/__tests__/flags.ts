@@ -7,14 +7,14 @@ type keys =
   | 'password-empty'
   | 'required_souce-emtpy_string'
   | 'required_password-emtpy_string'
-  | 'f2-y'
-  | 'f2-Y'
-  | 'f2-yes'
-  | 'f2-Yes'
-  | 'f3-n'
-  | 'f3-invalidString'
-  | 'f4-empty'
-  | 'f5-required';
+  | 'f1-y'
+  | 'f1-Y'
+  | 'f1-yes'
+  | 'f1-Yes'
+  | 'f2-n'
+  | 'f2-invalidString'
+  | 'f3-empty'
+  | 'f4-required';
 
 const flags: FlagsObjectType<keys> = {
   'souce-string': {
@@ -55,45 +55,45 @@ const flags: FlagsObjectType<keys> = {
     argument: true,
     required: true,
   },
-  'f2-y': {
+  'f1-y': {
     alias: '-g',
-    flag: '--f2-y',
-    description: 'f2-y',
+    flag: '--f1-y',
+    description: 'f1-y',
   },
-  'f2-Y': {
+  'f1-Y': {
     alias: '-h',
-    flag: '--f2-Y',
-    description: 'f2-Y',
+    flag: '--f1-Y',
+    description: 'f1-Y',
   },
-  'f2-yes': {
+  'f1-yes': {
     alias: '-i',
-    flag: '--f2-yes',
-    description: 'f2-yes',
+    flag: '--f1-yes',
+    description: 'f1-yes',
   },
-  'f2-Yes': {
+  'f1-Yes': {
     alias: '-j',
-    flag: '--f2-Yes',
-    description: 'f2-Yes',
+    flag: '--f1-Yes',
+    description: 'f1-Yes',
   },
-  'f3-n': {
+  'f2-n': {
     alias: '-k',
-    flag: '--f3-n',
-    description: 'f3-n',
+    flag: '--f2-n',
+    description: 'f2-n',
   },
-  'f3-invalidString': {
+  'f2-invalidString': {
     alias: '-l',
-    flag: '--f3-invalidString',
-    description: 'f3-invalidString',
+    flag: '--f2-invalidString',
+    description: 'f2-invalidString',
   },
-  'f4-empty': {
+  'f3-empty': {
     alias: '-m',
-    flag: '--f4-empty',
-    description: 'f4-empty',
+    flag: '--f3-empty',
+    description: 'f3-empty',
   },
-  'f5-required': {
+  'f4-required': {
     alias: '-n',
-    flag: '--f5-required',
-    description: 'f5-required',
+    flag: '--f4-required',
+    description: 'f4-required',
     required: true,
   },
 };
