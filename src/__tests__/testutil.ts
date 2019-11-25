@@ -1,5 +1,5 @@
 import {spawn} from 'cross-spawn';
-import {FlagsObjectType, FlagConfigType, ParsedResultType} from '../types';
+import {FlagsObjectType, ParsedResultType} from '../types';
 import {SimpleCLI} from '../simplecli';
 
 export type TestFlagObjType = FlagsObjectType<'test'>;
@@ -23,12 +23,11 @@ export const runCLI = (cmd: string, inputLines: string[]): Promise<string> => {
     const child = spawn(cmd);
     let childOutput = '';
 
-    inputLines.forEach((input) => {
-      child.stdin.write(input + '\n');
-    });
-
     child.stdout.on('data', (data) => {
       childOutput += data;
+      if (inputLines) {
+        child.stdin.write(inputLines.splice(0, 1) + '\n');
+      }
     });
 
     child.on('close', () => {
