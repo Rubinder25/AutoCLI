@@ -1,5 +1,5 @@
 import {FlagConfigType, ParsedResultType} from '../types';
-import {TestFlagObjType, parse} from './testutil';
+import {TestFlagObjType, parse, runCLI} from './testutil';
 
 const defaultFlagConfig: FlagConfigType = {
   alias: '-t',
@@ -73,7 +73,10 @@ describe('Test - parse():', () => {
       expect(errCodes.length).toBe(0);
     });
 
-    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
+    inputs = [
+      ['-t', 'testArg'],
+      ['--test', 'testArg'],
+    ];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('test');
@@ -106,7 +109,10 @@ describe('Test - parse():', () => {
       expect(errCodes[0]).toBe(101);
     });
 
-    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
+    inputs = [
+      ['-t', 'testArg'],
+      ['--test', 'testArg'],
+    ];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
@@ -139,7 +145,10 @@ describe('Test - parse():', () => {
       expect(errCodes[0]).toBe(101);
     });
 
-    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
+    inputs = [
+      ['-t', 'testArg'],
+      ['--test', 'testArg'],
+    ];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
@@ -156,7 +165,10 @@ describe('Test - parse():', () => {
       },
     };
 
-    inputs = [['-t', 'testArg', '-i'], ['--test', 'testArg', '--invalid']];
+    inputs = [
+      ['-t', 'testArg', '-i'],
+      ['--test', 'testArg', '--invalid'],
+    ];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
@@ -180,5 +192,11 @@ describe('Test - parse():', () => {
       expect(res.args.length).toBe(4);
       expect(res.args).toEqual(['arg1', '-arg2', '--arg3', 'arg4']);
     });
+  });
+});
+
+describe('Test - askQA()', () => {
+  test('test_1.ts', () => {
+    runCLI('node ./askQA_tests/test_1.ts');
   });
 });

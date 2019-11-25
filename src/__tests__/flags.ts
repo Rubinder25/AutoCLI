@@ -1,44 +1,19 @@
 import {FlagsObjectType} from '../types';
 
-type flagKeys = 'sandwich' | 'wrap' | 'bread' | 'sauce' | 'salt' | 'pepper';
+type keys =
+  | 'souce-string'
+  | 'souce-empty'
+  | 'password-string'
+  | 'password-empty'
+  | 'required_souce-emtpy_string'
+  | 'f2-y'
+  | 'f2-Y'
+  | 'f2-yes'
+  | 'f2-Yes'
+  | 'f3-n'
+  | 'f3-invalidString'
+  | 'f4-empty';
 
-const flags: FlagsObjectType<flagKeys> = {
-  sandwich: {
-    alias: 's',
-    flag: 'sandwich',
-    description: 'Sandwich',
-  },
-  wrap: {
-    alias: 'w',
-    flag: 'wrap',
-    description: 'Wrap',
-    showAstrisk: true,
-  },
-  bread: {
-    alias: '-b',
-    flag: '--bread',
-    description: 'type of bread',
-    argument: true,
-    required: true,
-    showAstrisk: false,
-  },
-  pepper: {
-    alias: '-p',
-    flag: '--pepper',
-    description: 'pepper',
-    showAstrisk: true,
-  },
-  salt: {
-    alias: '-s',
-    flag: '--salt',
-    description: 'salt',
-  },
-  sauce: {
-    alias: '-e',
-    flag: '--sauce',
-    description: 'sauce',
-    argument: true,
-  },
-};
+const flags: FlagsObjectType<keys> = {};
 
 export default flags;
