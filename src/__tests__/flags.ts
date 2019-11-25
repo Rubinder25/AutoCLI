@@ -12,7 +12,8 @@ type keys =
   | 'f2-Yes'
   | 'f3-n'
   | 'f3-invalidString'
-  | 'f4-empty';
+  | 'f4-empty'
+  | 'f5-required';
 
 const flags: FlagsObjectType<keys> = {};
 
