@@ -15,6 +15,32 @@ type keys =
   | 'f4-empty'
   | 'f5-required';
 
-const flags: FlagsObjectType<keys> = {};
+const flags: FlagsObjectType<keys> = {
+  'souce-string': {
+    alias: '-a',
+    flag: '--source-string',
+    description: 'source string',
+  },
+  'souce-empty': {
+    alias: '-b',
+    flag: '-source-empty',
+    description: 'source empty',
+  },
+  'password-string': {
+    alias: '-c',
+    flag: '--password-string',
+    description: 'password string',
+  },
+  'password-empty': {
+    alias: '-d',
+    flag: '--password-empty',
+    description: 'password empty',
+  },
+  'required_souce-emtpy_string': {
+    alias: '-e',
+    flag: '--required_souce-emtpy_string',
+    description: 'required_souce-emtpy_string',
+  },
+};
 
 export default flags;
