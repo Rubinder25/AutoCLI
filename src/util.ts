@@ -38,7 +38,7 @@ const fixedWidth = (s: string, w: number): string => {
 const getFlagRow = (flagConfig: FlagConfigType): string[] => {
   return [
     `  ${flagConfig.alias},`,
-    `${flagConfig.flag}${flagConfig.required ? ' <val>' : ''}`,
+    `${flagConfig.flag}${flagConfig.argument ? ' <val>' : ''}`,
     ` ${flagConfig.description}`,
   ];
 };
@@ -161,7 +161,7 @@ export const getHelp = (
     help += options.length ? ' [options]' : '';
     help += commands.length ? ' [command]' : '';
   }
-  
+
   help += EOL;
 
   if (commands.length > 0) {
