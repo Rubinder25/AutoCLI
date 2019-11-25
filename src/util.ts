@@ -85,14 +85,18 @@ export const getMappings = (cliInputArr: string[]): {[key: string]: number} => {
   return flagMappings;
 };
 
-export const getTable = (header: string, data: string[][]): string => {
+export const getTable = (
+  header: string,
+  data: string[][],
+  colSpace: number,
+): string => {
   const EOL = os.EOL;
   const nColWidth: number[] = Array(data[0].length).fill(0);
   let table: string = EOL + header + EOL;
 
   data.forEach((row) => {
     row.forEach((cell, j) => {
-      let cellWidth = j < row.length - 1 ? cell.length + 1 : cell.length;
+      let cellWidth = j < row.length - 1 ? cell.length + colSpace : cell.length;
       nColWidth[j] = Math.max(nColWidth[j], cellWidth);
     });
   });
@@ -151,11 +155,11 @@ export const getHelp = (
   }
 
   if (commands.length > 0) {
-    help += getTable('Commands:', commands);
+    help += getTable('Commands:', commands, 1);
   }
 
   if (options.length > 0) {
-    help += getTable('Options:', options);
+    help += getTable('Options:', options, 1);
   }
 
   return help;
