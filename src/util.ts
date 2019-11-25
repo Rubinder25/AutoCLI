@@ -38,7 +38,7 @@ const fixedWidth = (s: string, w: number): string => {
 const getFlagRow = (flagConfig: FlagConfigType): string[] => {
   return [
     `  ${flagConfig.alias},`,
-    `${flagConfig.flag} ${flagConfig.required ? '<val>' : ''}`,
+    `${flagConfig.flag}${flagConfig.required ? ' <val>' : ''}`,
     ` ${flagConfig.description}`,
   ];
 };
@@ -114,10 +114,9 @@ export const getTable = (
 export const getHelp = (
   programName: string,
   flags: FlagsObjectType<any>,
+  usage: string,
 ): string => {
   const EOL = os.EOL;
-  let help = `${EOL}Usage: ${programName} [options]${EOL}`;
-
   const commands: string[][] = [];
   const options: string[][] = [];
   let hasHelp = false;
@@ -153,6 +152,17 @@ export const getHelp = (
   if (!hasVersion) {
     options.push(getFlagRow(versionFlag));
   }
+
+  let help = `${EOL}Usage: ${programName}`;
+
+  if (usage) {
+    help += ` ${usage}`;
+  } else {
+    help += options.length ? ' [options]' : '';
+    help += commands.length ? ' [command]' : '';
+  }
+  
+  help += EOL;
 
   if (commands.length > 0) {
     help += getTable('Commands:', commands, 1);
