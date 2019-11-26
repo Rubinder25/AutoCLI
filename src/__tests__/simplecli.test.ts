@@ -1,5 +1,7 @@
 import {FlagConfigType, ParsedResultType} from '../types';
 import {TestFlagObjType, parse, runCLI} from './testutil';
+import {SimpleCLI} from '../simplecli';
+import {getHelp} from '../util';
 
 const defaultFlagConfig: FlagConfigType = {
   alias: '-t',
@@ -196,7 +198,7 @@ describe('Test - parse():', () => {
 });
 
 describe('Test - askQA()', () => {
-  test('test_1.ts', () => {
+  test('Test - askQA()', () => {
     const input = [
       'source',
       '',
@@ -215,10 +217,73 @@ describe('Test - askQA()', () => {
     ];
 
     return runCLI(
-      'ts-node .\\src\\__tests__\\askQA_tests\\test_1.ts',
+      'ts-node ./src/__tests__/cli_testers/testFlags.ts',
       input,
     ).then((output) => {
       expect(output).toMatchSnapshot();
     });
+  });
+});
+
+describe('Test - Help', () => {
+  let testFlagObj: any;
+
+  test('no usage | no command', () => {
+    testFlagObj = {
+      test: {...defaultFlagConfig},
+    };
+
+    const help = getHelp('Test Program', testFlagObj, '');
+    expect(help).toMatchSnapshot();
+  });
+
+  test('Only Options', () => {
+    testFlagObj = {
+      test: {...defaultFlagConfig},
+    };
+
+    const help = getHelp('Test Program', testFlagObj, '');
+    expect(help).toMatchSnapshot();
+  });
+
+  test('Only Command', () => {
+    testFlagObj = {
+      command: {
+        alias: 'c',
+        flag: 'command',
+        description: 'command',
+      },
+    };
+
+    const help = getHelp('Test Program', testFlagObj, '');
+    expect(help).toMatchSnapshot();
+  });
+
+  test('Options and Command', () => {
+    testFlagObj = {
+      test: {...defaultFlagConfig},
+      command: {
+        alias: 'c',
+        flag: 'command',
+        description: 'command',
+      },
+    };
+
+    const help = getHelp('Test Program', testFlagObj, '');
+    expect(help).toMatchSnapshot();
+  });
+
+  test('Usage defined', () => {
+    testFlagObj = {
+      test: {...defaultFlagConfig},
+      command: {
+        alias: 'c',
+        flag: 'command',
+        description: 'command',
+      },
+    };
+
+    const help = getHelp('Test Program', testFlagObj, 'my custom usage');
+    expect(help).toMatchSnapshot();
   });
 });

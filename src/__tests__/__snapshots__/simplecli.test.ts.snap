@@ -1,6 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test - askQA() test_1.ts 1`] = `
+exports[`Test - Help Only Command 1`] = `
+"
+Usage: Test Program [options] [command]
+
+Commands:
+  c, command  command
+
+Options:
+  -h, --help     help   
+  -v, --version  version
+"
+`;
+
+exports[`Test - Help Only Options 1`] = `
+"
+Usage: Test Program [options]
+
+Options:
+  -t, --test     test flag
+  -h, --help     help     
+  -v, --version  version  
+"
+`;
+
+exports[`Test - Help Options and Command 1`] = `
+"
+Usage: Test Program [options] [command]
+
+Commands:
+  c, command  command
+
+Options:
+  -t, --test     test flag
+  -h, --help     help     
+  -v, --version  version  
+"
+`;
+
+exports[`Test - Help Usage defined 1`] = `
+"
+Usage: Test Program my custom usage
+
+Commands:
+  c, command  command
+
+Options:
+  -t, --test     test flag
+  -h, --help     help     
+  -v, --version  version  
+"
+`;
+
+exports[`Test - Help no usage | no command 1`] = `
+"
+Usage: Test Program [options]
+
+Options:
+  -t, --test     test flag
+  -h, --help     help     
+  -v, --version  version  
+"
+`;
+
+exports[`Test - askQA() Test - askQA() 1`] = `
 "[1G[0Jsouce-string: [15Gsource
 [1G[0Jsouce-empty: [14G
 [1G[0Jpassword-string: [18G********

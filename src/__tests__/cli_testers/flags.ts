@@ -1,4 +1,4 @@
-import {FlagsObjectType} from '../types';
+import {FlagsObjectType} from '../../types';
 
 type keys =
   | 'souce-string'
