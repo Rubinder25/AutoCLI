@@ -40,8 +40,8 @@ export const runCLI = (
       liveOutput && process.stdout.write(data.toString());
 
       if (inputLines) {
-        waitSync(5);
         child.stdin.write(inputLines.splice(0, 1) + '\n');
+        waitSync(5);
       }
     });
 

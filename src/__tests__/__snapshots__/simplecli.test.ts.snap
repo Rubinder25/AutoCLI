@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test - askQA() test_1.ts 1`] = `
+"[1G[0Jsouce-string: [15Gsource
+[1G[0Jsouce-empty: [14G
+[1G[0Jpassword-string: [18G********
+[1G[0Jpassword-empty: [17G*
+[1G[0Jrequired_souce-emtpy_string: [30Greq_source
+[1G[0Jrequired_password-emtpy_string: [33G*********
+[1G[0Jf1-y (y/n): [13Gy
+[1G[0Jf1-Y (y/n): [13GY
+[1G[0Jf1-yes (y/n): [15Gyes
+[1G[0Jf1-Yes (y/n): [15GYes
+[1G[0Jf2-n (y/n): [13Gn
+[1G[0Jf2-invalidString (y/n): [25GinvalidString
+[1G[0Jf3-empty (y/n): [17G
+[1G[0Jf4-required (y/n): [20Gy_required
+{
+  'souce-string': 'source',
+  'souce-empty': undefined,
+  'password-string': 'my pass',
+  'password-empty': undefined,
+  'required_souce-emtpy_string': 'req_source',
+  'required_password-emtpy_string': 'req_pass',
+  'f1-y': 'f1-y',
+  'f1-Y': 'f1-Y',
+  'f1-yes': 'f1-yes',
+  'f1-Yes': 'f1-Yes',
+  'f2-n': undefined,
+  'f2-invalidString': undefined,
+  'f3-empty': undefined,
+  'f4-required': undefined
+}
+"
+`;

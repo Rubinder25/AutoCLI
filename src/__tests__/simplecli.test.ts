@@ -197,6 +197,28 @@ describe('Test - parse():', () => {
 
 describe('Test - askQA()', () => {
   test('test_1.ts', () => {
-    runCLI('node ./askQA_tests/test_1.ts');
+    const input = [
+      'source',
+      '',
+      'my pass',
+      '',
+      'req_source',
+      'req_pass',
+      'y',
+      'Y',
+      'yes',
+      'Yes',
+      'n',
+      'invalidString',
+      '',
+      'y_required',
+    ];
+
+    return runCLI(
+      'ts-node .\\src\\__tests__\\askQA_tests\\test_1.ts',
+      input,
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
   });
 });
