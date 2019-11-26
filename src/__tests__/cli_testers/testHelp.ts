@@ -1,5 +1,5 @@
 import {SimpleCLI} from '../../simplecli';
-import flags from '../flags';
+import flags from './flags';
 
 const program = new SimpleCLI('test_runner', '1.0.0');
 
