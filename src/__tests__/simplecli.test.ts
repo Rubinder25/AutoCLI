@@ -222,6 +222,35 @@ describe('Test - askQA()', () => {
       expect(output).toMatchSnapshot();
     });
   });
+
+  test('Test - askQA() | enter empty for required', () => {
+    const input = [
+      'source',
+      '',
+      'my pass',
+      '',
+      '',
+      'req_source',
+      '',
+      'req_pass',
+      'y',
+      'Y',
+      'yes',
+      'Yes',
+      'n',
+      'invalidString',
+      '',
+      '',
+      'y_required',
+    ];
+
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/testFlags.ts',
+      input,
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
 });
 
 describe('Test - Help', () => {
