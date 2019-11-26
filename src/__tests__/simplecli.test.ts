@@ -288,7 +288,7 @@ describe('Test - Help', () => {
 });
 
 describe('Test - Constructor', () => {
-  test('name: provided | version: provided', () => {
+  test('-h | name: provided | version: provided', () => {
     return runCLI(
       'ts-node ./src/__tests__/cli_testers/name_version_provided.ts -h',
       [''],
@@ -297,9 +297,27 @@ describe('Test - Constructor', () => {
     });
   });
 
-  test('name: not provided | version: not provided', () => {
+  test('-h | name: not provided | version: not provided', () => {
     return runCLI(
       'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts -h',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('-v | name: provided | version: provided', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/name_version_provided.ts -v',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('-v | name: not provided | version: not provided', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts -v',
       [''],
     ).then((output) => {
       expect(output).toMatchSnapshot();
