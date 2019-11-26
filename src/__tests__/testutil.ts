@@ -18,14 +18,29 @@ export const parse = (
   return [res, errCodes];
 };
 
-export const runCLI = (cmd: string, inputLines: string[]): Promise<string> => {
+export function waitSync(time: number): void {
+  const currTime = new Date().getTime();
+  while (new Date().getTime() - currTime <= time) {
+    //
+  }
+}
+
+export const runCLI = (
+  cmd: string,
+  inputLines: string[],
+  liveOutput?: boolean,
+): Promise<string> => {
   return new Promise((resolve, reject) => {
     const child = spawn(cmd);
     let childOutput = '';
 
     child.stdout.on('data', (data) => {
       childOutput += data;
+
+      liveOutput && process.stdout.write(data.toString());
+
       if (inputLines) {
+        waitSync(5);
         child.stdin.write(inputLines.splice(0, 1) + '\n');
       }
     });
