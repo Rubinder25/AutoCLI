@@ -18,9 +18,9 @@ import {
 import chalk, {Chalk} from 'chalk';
 
 export class SimpleCLI {
+  public usage: (usageString: string) => void;
   public parse: ParseFuncType;
   public askQA: InteractiveModeQAFuncType;
-  public usage: (usageString: string) => void;
 
   public constructor(psProgramName?: string, psVersion?: string) {
     const programName = psProgramName || path.basename(process.argv[1]);

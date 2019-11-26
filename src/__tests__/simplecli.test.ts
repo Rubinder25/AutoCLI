@@ -1,7 +1,6 @@
 import {FlagConfigType, ParsedResultType} from '../types';
 import {TestFlagObjType, parse, runCLI} from './testutil';
-import {SimpleCLI} from '../simplecli';
-import {getHelp} from '../util';
+import {getHelp, getVersion} from '../util';
 
 const defaultFlagConfig: FlagConfigType = {
   alias: '-t',
@@ -285,5 +284,25 @@ describe('Test - Help', () => {
 
     const help = getHelp('Test Program', testFlagObj, 'my custom usage');
     expect(help).toMatchSnapshot();
+  });
+});
+
+describe('Test - Constructor', () => {
+  test('name: provided | version: provided', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/name_version_provided.ts -h',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('name: not provided | version: not provided', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts -h',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
   });
 });

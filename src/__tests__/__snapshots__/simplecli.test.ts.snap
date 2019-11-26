@@ -1,5 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Test - Constructor name: not provided | version: not provided 1`] = `
+"[
+  'C:\\\\\\\\Users\\\\\\\\go4ro\\\\\\\\AppData\\\\\\\\Roaming\\\\\\\\npm\\\\\\\\node_modules\\\\\\\\ts-node\\\\\\\\dist\\\\\\\\bin.js',
+  'C:\\\\\\\\Users\\\\\\\\go4ro\\\\\\\\Desktop\\\\\\\\SimpleCLI\\\\\\\\src\\\\\\\\__tests__\\\\\\\\cli_testers\\\\\\\\name_version_not_provided.ts',
+  '-h'
+]
+"
+`;
+
+exports[`Test - Constructor name: provided | version: provided 1`] = `""`;
+
 exports[`Test - Help Only Command 1`] = `
 "
 Usage: Test Program [options] [command]
