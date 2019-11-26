@@ -1,6 +1,6 @@
 import {FlagConfigType, ParsedResultType} from '../types';
 import {TestFlagObjType, parse, runCLI} from './testutil';
-import {getHelp, getVersion} from '../util';
+import {getHelp} from '../util';
 
 const defaultFlagConfig: FlagConfigType = {
   alias: '-t',
@@ -326,9 +326,9 @@ describe('Test - Constructor', () => {
     });
   });
 
-  test('-h | name: not provided | version: not provided', () => {
+  test('--help | name: not provided | version: not provided', () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts -h',
+      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts --help',
       [''],
     ).then((output) => {
       expect(output).toMatchSnapshot();
@@ -344,9 +344,45 @@ describe('Test - Constructor', () => {
     });
   });
 
-  test('-v | name: not provided | version: not provided', () => {
+  test('--version | name: not provided | version: not provided', () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts -v',
+      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts --version',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+});
+
+describe('Test - Flag Overrides', () => {
+  test('flag overriden | -h', () => {
+    return runCLI('ts-node ./src/__tests__/cli_testers/flag_overrides.ts -h', [
+      '',
+    ]).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('flag overriden | --help', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/flag_overrides.ts --help',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('flag overriden | -v', () => {
+    return runCLI('ts-node ./src/__tests__/cli_testers/flag_overrides.ts -v', [
+      '',
+    ]).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('flag overriden | --version', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/flag_overrides.ts --version',
       [''],
     ).then((output) => {
       expect(output).toMatchSnapshot();

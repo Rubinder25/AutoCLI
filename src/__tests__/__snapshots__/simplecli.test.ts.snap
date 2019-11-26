@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test - Constructor -h | name: not provided | version: not provided 1`] = `
+exports[`Test - Constructor --help | name: not provided | version: not provided 1`] = `
 "
 Usage: name_version_not_provided.ts [options]
 
@@ -23,6 +23,8 @@ Options:
   -v, --version                               version                       
 "
 `;
+
+exports[`Test - Constructor --version | name: not provided | version: not provided 1`] = `"version: 9.9.9"`;
 
 exports[`Test - Constructor -h | name: provided | version: provided 1`] = `
 "
@@ -48,9 +50,15 @@ Options:
 "
 `;
 
-exports[`Test - Constructor -v | name: not provided | version: not provided 1`] = `"version: 9.9.9"`;
-
 exports[`Test - Constructor -v | name: provided | version: provided 1`] = `"version: 1.0.0"`;
+
+exports[`Test - Flag Overrides flag overriden | --help 1`] = `""`;
+
+exports[`Test - Flag Overrides flag overriden | --version 1`] = `""`;
+
+exports[`Test - Flag Overrides flag overriden | -h 1`] = `""`;
+
+exports[`Test - Flag Overrides flag overriden | -v 1`] = `""`;
 
 exports[`Test - Help Only Command 1`] = `
 "
