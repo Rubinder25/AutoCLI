@@ -223,7 +223,7 @@ describe('Test - interactive()', () => {
     });
   });
 
-  test('Test - interactive() | enter empty for required', () => {
+  test('Test - interactive() | enter empty when the flag is required', () => {
     const input = [
       'source',
       '',
