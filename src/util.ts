@@ -38,8 +38,8 @@ const fixedWidth = (s: string, w: number): string => {
 const getFlagRow = (flagConfig: FlagConfigType): string[] => {
   return [
     `  ${flagConfig.alias},`,
-    ` ${flagConfig.flag} ${flagConfig.required ? '<val>' : ''}`,
-    `  ${flagConfig.description}`,
+    `${flagConfig.flag}${flagConfig.argument ? ' <val>' : ''}`,
+    ` ${flagConfig.description}`,
   ];
 };
 
@@ -85,14 +85,19 @@ export const getMappings = (cliInputArr: string[]): {[key: string]: number} => {
   return flagMappings;
 };
 
-export const getTable = (header: string, data: string[][]): string => {
+export const getTable = (
+  header: string,
+  data: string[][],
+  colSpace: number,
+): string => {
   const EOL = os.EOL;
   const nColWidth: number[] = Array(data[0].length).fill(0);
   let table: string = EOL + header + EOL;
 
   data.forEach((row) => {
     row.forEach((cell, j) => {
-      nColWidth[j] = Math.max(nColWidth[j], cell.length);
+      let cellWidth = j < row.length - 1 ? cell.length + colSpace : cell.length;
+      nColWidth[j] = Math.max(nColWidth[j], cellWidth);
     });
   });
 
@@ -109,10 +114,9 @@ export const getTable = (header: string, data: string[][]): string => {
 export const getHelp = (
   programName: string,
   flags: FlagsObjectType<any>,
+  usage: string,
 ): string => {
   const EOL = os.EOL;
-  let help = `${EOL}Usage: ${programName} [options]${EOL}`;
-
   const commands: string[][] = [];
   const options: string[][] = [];
   let hasHelp = false;
@@ -149,12 +153,23 @@ export const getHelp = (
     options.push(getFlagRow(versionFlag));
   }
 
+  let help = `${EOL}Usage: ${programName}`;
+
+  if (usage) {
+    help += ` ${usage}`;
+  } else {
+    help += options.length ? ' [options]' : '';
+    help += commands.length ? ' [command]' : '';
+  }
+
+  help += EOL;
+
   if (commands.length > 0) {
-    help += getTable('Commands:', commands);
+    help += getTable('Commands:', commands, 1);
   }
 
   if (options.length > 0) {
-    help += getTable('Options:', options);
+    help += getTable('Options:', options, 1);
   }
 
   return help;

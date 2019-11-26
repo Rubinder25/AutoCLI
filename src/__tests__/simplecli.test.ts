@@ -1,5 +1,6 @@
 import {FlagConfigType, ParsedResultType} from '../types';
-import {TestFlagObjType, parse} from './testutil';
+import {TestFlagObjType, parse, runCLI} from './testutil';
+import {getHelp} from '../util';
 
 const defaultFlagConfig: FlagConfigType = {
   alias: '-t',
@@ -73,7 +74,10 @@ describe('Test - parse():', () => {
       expect(errCodes.length).toBe(0);
     });
 
-    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
+    inputs = [
+      ['-t', 'testArg'],
+      ['--test', 'testArg'],
+    ];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('test');
@@ -106,7 +110,10 @@ describe('Test - parse():', () => {
       expect(errCodes[0]).toBe(101);
     });
 
-    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
+    inputs = [
+      ['-t', 'testArg'],
+      ['--test', 'testArg'],
+    ];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
@@ -139,7 +146,10 @@ describe('Test - parse():', () => {
       expect(errCodes[0]).toBe(101);
     });
 
-    inputs = [['-t', 'testArg'], ['--test', 'testArg']];
+    inputs = [
+      ['-t', 'testArg'],
+      ['--test', 'testArg'],
+    ];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
@@ -156,7 +166,10 @@ describe('Test - parse():', () => {
       },
     };
 
-    inputs = [['-t', 'testArg', '-i'], ['--test', 'testArg', '--invalid']];
+    inputs = [
+      ['-t', 'testArg', '-i'],
+      ['--test', 'testArg', '--invalid'],
+    ];
     inputs.forEach((input) => {
       [res, errCodes] = parse(input, testFlagObj);
       expect(res.test).toBe('testArg');
@@ -179,6 +192,200 @@ describe('Test - parse():', () => {
       expect(errCodes.length).toBe(0);
       expect(res.args.length).toBe(4);
       expect(res.args).toEqual(['arg1', '-arg2', '--arg3', 'arg4']);
+    });
+  });
+});
+
+describe('Test - interactive()', () => {
+  test('Test - interactive()', () => {
+    const input = [
+      'source',
+      '',
+      'my pass',
+      '',
+      'req_source',
+      'req_pass',
+      'y',
+      'Y',
+      'yes',
+      'Yes',
+      'n',
+      'invalidString',
+      '',
+      'y_required',
+    ];
+
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/testFlags.ts',
+      input,
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('Test - interactive() | enter empty for required', () => {
+    const input = [
+      'source',
+      '',
+      'my pass',
+      '',
+      '',
+      'req_source',
+      '',
+      'req_pass',
+      'y',
+      'Y',
+      'yes',
+      'Yes',
+      'n',
+      'invalidString',
+      '',
+      '',
+      'y_required',
+    ];
+
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/testFlags.ts',
+      input,
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+});
+
+describe('Test - Help', () => {
+  let testFlagObj: any;
+
+  test('no usage | no command', () => {
+    testFlagObj = {
+      test: {...defaultFlagConfig},
+    };
+
+    const help = getHelp('Test Program', testFlagObj, '');
+    expect(help).toMatchSnapshot();
+  });
+
+  test('Only Options', () => {
+    testFlagObj = {
+      test: {...defaultFlagConfig},
+    };
+
+    const help = getHelp('Test Program', testFlagObj, '');
+    expect(help).toMatchSnapshot();
+  });
+
+  test('Only Command', () => {
+    testFlagObj = {
+      command: {
+        alias: 'c',
+        flag: 'command',
+        description: 'command',
+      },
+    };
+
+    const help = getHelp('Test Program', testFlagObj, '');
+    expect(help).toMatchSnapshot();
+  });
+
+  test('Options and Command', () => {
+    testFlagObj = {
+      test: {...defaultFlagConfig},
+      command: {
+        alias: 'c',
+        flag: 'command',
+        description: 'command',
+      },
+    };
+
+    const help = getHelp('Test Program', testFlagObj, '');
+    expect(help).toMatchSnapshot();
+  });
+
+  test('Usage defined', () => {
+    testFlagObj = {
+      test: {...defaultFlagConfig},
+      command: {
+        alias: 'c',
+        flag: 'command',
+        description: 'command',
+      },
+    };
+
+    const help = getHelp('Test Program', testFlagObj, 'my custom usage');
+    expect(help).toMatchSnapshot();
+  });
+});
+
+describe('Test - Constructor', () => {
+  test('-h | name: provided | version: provided', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/name_version_provided.ts -h',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('--help | name: not provided | version: not provided', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts --help',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('-v | name: provided | version: provided', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/name_version_provided.ts -v',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('--version | name: not provided | version: not provided', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts --version',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+});
+
+describe('Test - Flag Overrides', () => {
+  test('flag overriden | -h', () => {
+    return runCLI('ts-node ./src/__tests__/cli_testers/flag_overrides.ts -h', [
+      '',
+    ]).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('flag overriden | --help', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/flag_overrides.ts --help',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('flag overriden | -v', () => {
+    return runCLI('ts-node ./src/__tests__/cli_testers/flag_overrides.ts -v', [
+      '',
+    ]).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  test('flag overriden | --version', () => {
+    return runCLI(
+      'ts-node ./src/__tests__/cli_testers/flag_overrides.ts --version',
+      [''],
+    ).then((output) => {
+      expect(output).toMatchSnapshot();
     });
   });
 });

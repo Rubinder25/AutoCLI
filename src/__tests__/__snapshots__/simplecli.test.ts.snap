@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test - Constructor --help | name: not provided | version: not provided 1`] = `
+"
+Usage: name_version_not_provided.ts [options]
+
+Options:
+  -a, --source-string <val>                   source string                 
+  -b, -source-empty <val>                     source empty                  
+  -c, --password-string <val>                 password string               
+  -d, --password-empty <val>                  password empty                
+  -e, --required_souce-emtpy_string <val>     required_souce-emtpy_string   
+  -f, --required_password-emtpy_string <val>  required_password-emtpy_string
+  -g, --f1-y                                  f1-y                          
+  -i, --f1-Y                                  f1-Y                          
+  -j, --f1-yes                                f1-yes                        
+  -k, --f1-Yes                                f1-Yes                        
+  -l, --f2-n                                  f2-n                          
+  -m, --f2-invalidString                      f2-invalidString              
+  -n, --f3-empty                              f3-empty                      
+  -o, --f4-required                           f4-required                   
+  -h, --help                                  help                          
+  -v, --version                               version                       
+"
+`;
+
+exports[`Test - Constructor --version | name: not provided | version: not provided 1`] = `"version: 9.9.9"`;
+
+exports[`Test - Constructor -h | name: provided | version: provided 1`] = `
+"
+Usage: test_runner [options]
+
+Options:
+  -a, --source-string <val>                   source string                 
+  -b, -source-empty <val>                     source empty                  
+  -c, --password-string <val>                 password string               
+  -d, --password-empty <val>                  password empty                
+  -e, --required_souce-emtpy_string <val>     required_souce-emtpy_string   
+  -f, --required_password-emtpy_string <val>  required_password-emtpy_string
+  -g, --f1-y                                  f1-y                          
+  -i, --f1-Y                                  f1-Y                          
+  -j, --f1-yes                                f1-yes                        
+  -k, --f1-Yes                                f1-Yes                        
+  -l, --f2-n                                  f2-n                          
+  -m, --f2-invalidString                      f2-invalidString              
+  -n, --f3-empty                              f3-empty                      
+  -o, --f4-required                           f4-required                   
+  -h, --help                                  help                          
+  -v, --version                               version                       
+"
+`;
+
+exports[`Test - Constructor -v | name: provided | version: provided 1`] = `"version: 1.0.0"`;
+
+exports[`Test - Flag Overrides flag overriden | --help 1`] = `""`;
+
+exports[`Test - Flag Overrides flag overriden | --version 1`] = `""`;
+
+exports[`Test - Flag Overrides flag overriden | -h 1`] = `""`;
+
+exports[`Test - Flag Overrides flag overriden | -v 1`] = `""`;
+
+exports[`Test - Help Only Command 1`] = `
+"
+Usage: Test Program [options] [command]
+
+Commands:
+  c, command  command
+
+Options:
+  -h, --help     help   
+  -v, --version  version
+"
+`;
+
+exports[`Test - Help Only Options 1`] = `
+"
+Usage: Test Program [options]
+
+Options:
+  -t, --test     test flag
+  -h, --help     help     
+  -v, --version  version  
+"
+`;
+
+exports[`Test - Help Options and Command 1`] = `
+"
+Usage: Test Program [options] [command]
+
+Commands:
+  c, command  command
+
+Options:
+  -t, --test     test flag
+  -h, --help     help     
+  -v, --version  version  
+"
+`;
+
+exports[`Test - Help Usage defined 1`] = `
+"
+Usage: Test Program my custom usage
+
+Commands:
+  c, command  command
+
+Options:
+  -t, --test     test flag
+  -h, --help     help     
+  -v, --version  version  
+"
+`;
+
+exports[`Test - Help no usage | no command 1`] = `
+"
+Usage: Test Program [options]
+
+Options:
+  -t, --test     test flag
+  -h, --help     help     
+  -v, --version  version  
+"
+`;
+
+exports[`Test - interactive() Test - interactive() | enter empty for required 1`] = `
+"[1G[0Jsouce-string: [15Gsource
+[1G[0Jsouce-empty: [14G
+[1G[0Jpassword-string: [18G********
+[1G[0Jpassword-empty: [17G*
+[1G[0Jrequired_souce-emtpy_string: [30G
+[1A[1G[0J[1G[0Jrequired_souce-emtpy_string (required): [41Greq_source
+[1G[0Jrequired_password-emtpy_string: [33G*
+[1A[1G[0J[1G[0Jrequired_password-emtpy_string (required): [44G*********
+[1G[0Jf1-y (y/n): [13Gy
+[1G[0Jf1-Y (y/n): [13GY
+[1G[0Jf1-yes (y/n): [15Gyes
+[1G[0Jf1-Yes (y/n): [15GYes
+[1G[0Jf2-n (y/n): [13Gn
+[1G[0Jf2-invalidString (y/n): [25GinvalidString
+[1G[0Jf3-empty (y/n): [17G
+[1G[0Jf4-required (y/n): [20G
+[1A[1G[0J[1G[0Jf4-required (y/n) (required): [31Gy_required
+{
+  'souce-string': 'source',
+  'souce-empty': undefined,
+  'password-string': 'my pass',
+  'password-empty': undefined,
+  'required_souce-emtpy_string': 'req_source',
+  'required_password-emtpy_string': 'req_pass',
+  'f1-y': 'f1-y',
+  'f1-Y': 'f1-Y',
+  'f1-yes': 'f1-yes',
+  'f1-Yes': 'f1-Yes',
+  'f2-n': undefined,
+  'f2-invalidString': undefined,
+  'f3-empty': undefined,
+  'f4-required': undefined
+}
+"
+`;
+
+exports[`Test - interactive() Test - interactive() 1`] = `
+"[1G[0Jsouce-string: [15Gsource
+[1G[0Jsouce-empty: [14G
+[1G[0Jpassword-string: [18G********
+[1G[0Jpassword-empty: [17G*
+[1G[0Jrequired_souce-emtpy_string: [30Greq_source
+[1G[0Jrequired_password-emtpy_string: [33G*********
+[1G[0Jf1-y (y/n): [13Gy
+[1G[0Jf1-Y (y/n): [13GY
+[1G[0Jf1-yes (y/n): [15Gyes
+[1G[0Jf1-Yes (y/n): [15GYes
+[1G[0Jf2-n (y/n): [13Gn
+[1G[0Jf2-invalidString (y/n): [25GinvalidString
+[1G[0Jf3-empty (y/n): [17G
+[1G[0Jf4-required (y/n): [20Gy_required
+{
+  'souce-string': 'source',
+  'souce-empty': undefined,
+  'password-string': 'my pass',
+  'password-empty': undefined,
+  'required_souce-emtpy_string': 'req_source',
+  'required_password-emtpy_string': 'req_pass',
+  'f1-y': 'f1-y',
+  'f1-Y': 'f1-Y',
+  'f1-yes': 'f1-yes',
+  'f1-Yes': 'f1-Yes',
+  'f2-n': undefined,
+  'f2-invalidString': undefined,
+  'f3-empty': undefined,
+  'f4-required': undefined
+}
+"
+`;

@@ -18,13 +18,19 @@ import {
 import chalk, {Chalk} from 'chalk';
 
 export class SimpleCLI {
+  public usage: (usageString: string) => void;
   public parse: ParseFuncType;
-  public askQA: InteractiveModeQAFuncType;
+  public interactive: InteractiveModeQAFuncType;
 
   public constructor(psProgramName?: string, psVersion?: string) {
     const programName = psProgramName || path.basename(process.argv[1]);
     const version = psVersion || findVersion() || 'not found';
+    let usageString = '';
     const errors: ErrorType[] = [];
+
+    function usage(s: string): void {
+      usageString = s;
+    }
 
     function parse<T extends FlagsObjectType<any>>(
       cliInputArr: string[],
@@ -94,7 +100,7 @@ export class SimpleCLI {
         recievedFlags.hasOwnProperty('-h') ||
         recievedFlags.hasOwnProperty('--help')
       ) {
-        process.stdout.write(getHelp(programName, flags));
+        process.stdout.write(getHelp(programName, flags, usageString));
         process.exit(0);
       }
 
@@ -133,7 +139,7 @@ export class SimpleCLI {
       return res;
     }
 
-    async function askQA<T extends FlagsObjectType<any>>(
+    async function interactive<T extends FlagsObjectType<any>>(
       flags: T,
       color?: Chalk,
     ): Promise<ParsedResultType<T>> {
@@ -190,7 +196,8 @@ export class SimpleCLI {
       return res;
     }
 
+    this.usage = usage;
     this.parse = parse;
-    this.askQA = askQA;
+    this.interactive = interactive;
   }
 }
