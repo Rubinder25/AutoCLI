@@ -20,7 +20,7 @@ import chalk, {Chalk} from 'chalk';
 export class SimpleCLI {
   public usage: (usageString: string) => void;
   public parse: ParseFuncType;
-  public askQA: InteractiveModeQAFuncType;
+  public interactive: InteractiveModeQAFuncType;
 
   public constructor(psProgramName?: string, psVersion?: string) {
     const programName = psProgramName || path.basename(process.argv[1]);
@@ -139,7 +139,7 @@ export class SimpleCLI {
       return res;
     }
 
-    async function askQA<T extends FlagsObjectType<any>>(
+    async function interactive<T extends FlagsObjectType<any>>(
       flags: T,
       color?: Chalk,
     ): Promise<ParsedResultType<T>> {
@@ -198,6 +198,6 @@ export class SimpleCLI {
 
     this.usage = usage;
     this.parse = parse;
-    this.askQA = askQA;
+    this.interactive = interactive;
   }
 }

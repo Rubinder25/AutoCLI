@@ -196,8 +196,8 @@ describe('Test - parse():', () => {
   });
 });
 
-describe('Test - askQA()', () => {
-  test('Test - askQA()', () => {
+describe('Test - interactive()', () => {
+  test('Test - interactive()', () => {
     const input = [
       'source',
       '',
@@ -223,7 +223,7 @@ describe('Test - askQA()', () => {
     });
   });
 
-  test('Test - askQA() | enter empty for required', () => {
+  test('Test - interactive() | enter empty for required', () => {
     const input = [
       'source',
       '',

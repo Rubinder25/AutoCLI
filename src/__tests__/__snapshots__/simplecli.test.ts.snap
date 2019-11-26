@@ -123,7 +123,7 @@ Options:
 "
 `;
 
-exports[`Test - askQA() Test - askQA() | enter empty for required 1`] = `
+exports[`Test - interactive() Test - interactive() | enter empty for required 1`] = `
 "[1G[0Jsouce-string: [15Gsource
 [1G[0Jsouce-empty: [14G
 [1G[0Jpassword-string: [18G********
@@ -160,7 +160,7 @@ exports[`Test - askQA() Test - askQA() | enter empty for required 1`] = `
 "
 `;
 
-exports[`Test - askQA() Test - askQA() 1`] = `
+exports[`Test - interactive() Test - interactive() 1`] = `
 "[1G[0Jsouce-string: [15Gsource
 [1G[0Jsouce-empty: [14G
 [1G[0Jpassword-string: [18G********
