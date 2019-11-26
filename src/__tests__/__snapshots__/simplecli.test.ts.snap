@@ -1,15 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test - Constructor name: not provided | version: not provided 1`] = `
-"[
-  'C:\\\\\\\\Users\\\\\\\\go4ro\\\\\\\\AppData\\\\\\\\Roaming\\\\\\\\npm\\\\\\\\node_modules\\\\\\\\ts-node\\\\\\\\dist\\\\\\\\bin.js',
-  'C:\\\\\\\\Users\\\\\\\\go4ro\\\\\\\\Desktop\\\\\\\\SimpleCLI\\\\\\\\src\\\\\\\\__tests__\\\\\\\\cli_testers\\\\\\\\name_version_not_provided.ts',
-  '-h'
-]
+exports[`Test - Constructor -h | name: not provided | version: not provided 1`] = `
+"
+Usage: name_version_not_provided.ts [options]
+
+Options:
+  -a, --source-string <val>                   source string                 
+  -b, -source-empty <val>                     source empty                  
+  -c, --password-string <val>                 password string               
+  -d, --password-empty <val>                  password empty                
+  -e, --required_souce-emtpy_string <val>     required_souce-emtpy_string   
+  -f, --required_password-emtpy_string <val>  required_password-emtpy_string
+  -g, --f1-y                                  f1-y                          
+  -i, --f1-Y                                  f1-Y                          
+  -j, --f1-yes                                f1-yes                        
+  -k, --f1-Yes                                f1-Yes                        
+  -l, --f2-n                                  f2-n                          
+  -m, --f2-invalidString                      f2-invalidString              
+  -n, --f3-empty                              f3-empty                      
+  -o, --f4-required                           f4-required                   
+  -h, --help                                  help                          
+  -v, --version                               version                       
 "
 `;
 
-exports[`Test - Constructor name: provided | version: provided 1`] = `""`;
+exports[`Test - Constructor -h | name: provided | version: provided 1`] = `
+"
+Usage: test_runner [options]
+
+Options:
+  -a, --source-string <val>                   source string                 
+  -b, -source-empty <val>                     source empty                  
+  -c, --password-string <val>                 password string               
+  -d, --password-empty <val>                  password empty                
+  -e, --required_souce-emtpy_string <val>     required_souce-emtpy_string   
+  -f, --required_password-emtpy_string <val>  required_password-emtpy_string
+  -g, --f1-y                                  f1-y                          
+  -i, --f1-Y                                  f1-Y                          
+  -j, --f1-yes                                f1-yes                        
+  -k, --f1-Yes                                f1-Yes                        
+  -l, --f2-n                                  f2-n                          
+  -m, --f2-invalidString                      f2-invalidString              
+  -n, --f3-empty                              f3-empty                      
+  -o, --f4-required                           f4-required                   
+  -h, --help                                  help                          
+  -v, --version                               version                       
+"
+`;
+
+exports[`Test - Constructor -v | name: not provided | version: not provided 1`] = `"version: 9.9.9"`;
+
+exports[`Test - Constructor -v | name: provided | version: provided 1`] = `"version: 1.0.0"`;
 
 exports[`Test - Help Only Command 1`] = `
 "
