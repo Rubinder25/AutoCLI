@@ -125,6 +125,10 @@ console.log(
 
 ## Flags
 
+### Commands
+
+If a flag alias and flag have '-' then they are considered as options. If it doesn't begin with '-' then it is considered as command.
+
 ### Argument vs Boolean flags
 
 Flags can accept arguments to be passed, this can be done by setting `argument: true` in the flag config, e.g. in the above program the flag `bread` requires an argument(type of bread) to be passed, while the rest of the flags are boolean flags. A boolean flag doesn't require an argument they are either present or not.
@@ -144,6 +148,10 @@ The program auto generates help menu if `-h ` or `--help` flags are passed.
 e.g. if the above program is run with `-h` flag the following output is received
 
 ```
+Output
+
+ts-node subway.ts -h
+
 Usage: subway [options]
 
 Options:
@@ -157,7 +165,27 @@ Options:
 
 ### Usage
 
+The usage can be customized by calling `usage` method
 
+```js
+cli.usage('my custome usage');
+```
+
+```
+Output
+
+ts-node subway.ts -h
+
+Usage: subway my custome usage
+
+Options:
+  -b, --bread <val>  type of bread
+  -s, --salad        add salad
+  -u, --sauce        add sauce
+  -c, --cheese       add cheese
+  -h, --help         help
+  -v, --version      version
+```
 
 ## Auto generated version
 
@@ -212,6 +240,7 @@ const program = await cli.interactive(flags, chalk.blue);
 Output
 
 ts-node subway.ts
+
 bread: Italian
 salad (y/n): y
 sauce (y/n): n
@@ -222,6 +251,22 @@ You have ordered a sandwich: Italian bread + salad  + cheese
 
 ### Required
 
-While in interactive mode
+While in interactive mode if a flag has `required: true`, the value for that program becomes mandatory and an empty value will not be accepted for that flag.
+
+e.g.
+
+```
+bread (required): 
+```
 
 ## Errors
+
+List of errors thrown by the `parse` function
+
+
+| Code | Error                                |
+| ---- | ------------------------------------ |
+| 101  | An argument for flag is not provided |
+| 102  | The flag is required                 |
+| 103  | An invalid flag is passed            |
+
