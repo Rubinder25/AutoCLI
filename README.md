@@ -1,3 +1,5 @@
+# `In Progress`
+
 # Simple CLI
 
 Commander like utility to create command-line programs with added support for typescript.
@@ -7,6 +9,7 @@ Commander like utility to create command-line programs with added support for ty
 ```
 npm i simple-cli
 ```
+
 ## Flags Object
 
 We first need to define the flags which will be used by our application. The flag object will contain definitions of all the commands and flags
@@ -27,13 +30,13 @@ const flags = {
   },
 };
 
-const response = program.parse(process.argv.slice(2), flags, (err) => console.log(err.display));
+const response = program.parse(process.argv.slice(2), flags, (err) =>
+  console.log(err.display),
+);
 
 // the response object will have all properties of flags attached to it with values
 console.log(response);
 ```
-
-
 
 ### Add Typescript support to flags
 
@@ -56,15 +59,15 @@ const flags: FlagsObjectType<keys> = {
 };
 ```
 
-
-
 ## Initialize the object
 
 ```js
 import {SimpleCLI} from './src';
 
-const program = new SimpleCLI('My Program','1.0.0');
-const response = program.parse(process.argv.slice(2), flags, (err) => console.log(err.display));
+const program = new SimpleCLI('My Program', '1.0.0');
+const response = program.parse(process.argv.slice(2), flags, (err) =>
+  console.log(err.display),
+);
 ```
 
 ## In Action
@@ -77,7 +80,7 @@ import {SimpleCLI, FlagsObjectType, ErrorType} from './src';
 type keys = 'bread' | 'salad' | 'sauce' | 'cheese';
 
 const flags: FlagsObjectType<keys> = {
-    // Add a order command here
+  // Add a order command here
   bread: {
     alias: '-b',
     flag: '--bread',
@@ -118,10 +121,7 @@ console.log(
   program.sauce ? '+ sauce' : '',
   program.cheese ? '+ cheese' : '',
 );
-
 ```
-
-
 
 ## Flags
 
@@ -135,15 +135,15 @@ Flags can accept arguments to be passed, this can be done by setting `argument: 
 
 ### Boolean flags Shorthand
 
-Multiple boolean flags can be combined together e.g. `-c -u -s` can also be passed in as `-cus` 
+Multiple boolean flags can be combined together e.g. `-c -u -s` can also be passed in as `-cus`
 
 ### Required Flags
 
-If a flag has `required: true` then it becomes a required flag and if it is not present in the cli input `onError` will receive error. 
+If a flag has `required: true` then it becomes a required flag and if it is not present in the cli input `onError` will receive error.
 
 ## Auto generated Help
 
-The program auto generates help menu if `-h ` or `--help` flags are passed.
+The program auto generates help menu if `-h` or `--help` flags are passed.
 
 e.g. if the above program is run with `-h` flag the following output is received
 
@@ -195,11 +195,11 @@ The version is passed in constructor of `SimpleCLI`
 
 ### Use version from `Package.json`
 
-If the version is not passed into constructor, the program use the version in `Package.json` 
+If the version is not passed into constructor, the program use the version in `Package.json`
 
 ## Override help and version flags
 
-The program handles `-v` or `--version` and  `-h ` or `--help` automatically. However, these can be overwritten by having these flags in the `flags` object passed to the `parse` function
+The program handles `-v` or `--version` and `-h` or `--help` automatically. However, these can be overwritten by having these flags in the `flags` object passed to the `parse` function
 
 The following will prevent `SimpleCLI` from handling these flags automatically and you can handle these in your program
 
@@ -256,17 +256,15 @@ While in interactive mode if a flag has `required: true`, the value for that pro
 e.g.
 
 ```
-bread (required): 
+bread (required):
 ```
 
 ## Errors
 
 List of errors thrown by the `parse` function
 
-
 | Code | Error                                |
 | ---- | ------------------------------------ |
 | 101  | An argument for flag is not provided |
 | 102  | The flag is required                 |
 | 103  | An invalid flag is passed            |
-
