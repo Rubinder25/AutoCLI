@@ -141,22 +141,7 @@ exports[`Test - interactive() Test - interactive() | enter empty when the flag i
 [1G[0Jf3-empty (y/n): [17G
 [1G[0Jf4-required (y/n): [20G
 [1A[1G[0J[1G[0Jf4-required (y/n) (required): [31Gy_required
-{
-  'souce-string': 'source',
-  'souce-empty': undefined,
-  'password-string': 'my pass',
-  'password-empty': undefined,
-  'required_souce-emtpy_string': 'req_source',
-  'required_password-emtpy_string': 'req_pass',
-  'f1-y': 'f1-y',
-  'f1-Y': 'f1-Y',
-  'f1-yes': 'f1-yes',
-  'f1-Yes': 'f1-Yes',
-  'f2-n': undefined,
-  'f2-invalidString': undefined,
-  'f3-empty': undefined,
-  'f4-required': undefined
-}
+{\\"souce-string\\":\\"source\\",\\"password-string\\":\\"my pass\\",\\"required_souce-emtpy_string\\":\\"req_source\\",\\"required_password-emtpy_string\\":\\"req_pass\\",\\"f1-y\\":\\"f1-y\\",\\"f1-Y\\":\\"f1-Y\\",\\"f1-yes\\":\\"f1-yes\\",\\"f1-Yes\\":\\"f1-Yes\\"}
 "
 `;
 
@@ -175,21 +160,6 @@ exports[`Test - interactive() Test - interactive() 1`] = `
 [1G[0Jf2-invalidString (y/n): [25GinvalidString
 [1G[0Jf3-empty (y/n): [17G
 [1G[0Jf4-required (y/n): [20Gy_required
-{
-  'souce-string': 'source',
-  'souce-empty': undefined,
-  'password-string': 'my pass',
-  'password-empty': undefined,
-  'required_souce-emtpy_string': 'req_source',
-  'required_password-emtpy_string': 'req_pass',
-  'f1-y': 'f1-y',
-  'f1-Y': 'f1-Y',
-  'f1-yes': 'f1-yes',
-  'f1-Yes': 'f1-Yes',
-  'f2-n': undefined,
-  'f2-invalidString': undefined,
-  'f3-empty': undefined,
-  'f4-required': undefined
-}
+{\\"souce-string\\":\\"source\\",\\"password-string\\":\\"my pass\\",\\"required_souce-emtpy_string\\":\\"req_source\\",\\"required_password-emtpy_string\\":\\"req_pass\\",\\"f1-y\\":\\"f1-y\\",\\"f1-Y\\":\\"f1-Y\\",\\"f1-yes\\":\\"f1-yes\\",\\"f1-Yes\\":\\"f1-Yes\\"}
 "
 `;
