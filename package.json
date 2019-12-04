@@ -1,7 +1,7 @@
 {
-  "name": "autoterminal",
+  "name": "simplecli",
   "version": "1.0.0",
-  "description": "Commander Like CLI tool withTypescript support",
+  "description": "Utility to create command-line programs",
   "main": "build/cli.js",
   "scripts": {
     "build": "tsc",

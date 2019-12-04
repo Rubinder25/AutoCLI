@@ -1,16 +1,16 @@
 # Simple CLI
 
-Commander like utility to create command-line programs with added support for typescript.
+Utility to create command-line programs.
 
 ## Install
 
 ```
-npm i simple-cli
+npm i simplecli
 ```
 
 ## Flags Object
 
-We first need to define the flags which will be used by our application. The flag object will contain definitions of all the commands and flags
+We first need to define the flags which will be used by our application. The flag object will contain definitions of all the commands and flags.
 
 ```js
 const flags = {
@@ -60,9 +60,10 @@ const flags: FlagsObjectType<keys> = {
 ## Initialize the object
 
 ```js
-import {SimpleCLI} from './src';
+import {SimpleCLI} from 'simplecli';
 
 const program = new SimpleCLI('My Program', '1.0.0');
+
 const response = program.parse(process.argv.slice(2), flags, (err) =>
   console.log(err.display),
 );
@@ -70,10 +71,10 @@ const response = program.parse(process.argv.slice(2), flags, (err) =>
 
 ## In Action
 
-To see it in action let's build a small cli utility to gather information about sandwich order
+To see it in action let's build a small cli utility to gather information about sandwich order.
 
 ```js
-import {SimpleCLI, FlagsObjectType, ErrorType} from './src';
+import {SimpleCLI, FlagsObjectType, ErrorType} from 'simplecli';
 
 type keys = 'bread' | 'salad' | 'sauce' | 'cheese';
 
@@ -132,7 +133,7 @@ Flags can accept arguments to be passed, this can be done by setting `argument: 
 
 ### Boolean flags Shorthand
 
-Multiple boolean flags can be combined together e.g. `-c -u -s` can also be passed in as `-cus`
+Multiple boolean flags can be combined together e.g. `-c -u -s` can also be passed in as `-cus`.
 
 ### Required Flags
 
@@ -142,7 +143,7 @@ If a flag has `required: true` then it becomes a required flag and if it is not 
 
 The program auto generates help menu if `-h` or `--help` flags are passed.
 
-e.g. if the above program is run with `-h` flag the following output is received
+e.g. if the above program is run with `-h` flag the following output is received:-
 
 ```
 terminal> ts-node subway.ts -h
@@ -160,7 +161,7 @@ Options:
 
 ### Usage
 
-The usage can be customized by calling `usage` method
+The usage can be customized by calling `usage` method.
 
 ```js
 cli.usage('my custome usage');
@@ -182,19 +183,19 @@ Options:
 
 ## Auto generated version
 
-If the program is run with `-v` or `--version` flag it shows the version of the program
+If the program is run with `-v` or `--version` flag it shows the version of the program.
 
-The version is passed in constructor of `SimpleCLI`
+The version is passed in constructor of `SimpleCLI`.
 
 ### Use version from `Package.json`
 
-If the version is not passed into constructor, the program use the version in `Package.json`
+If the version is not passed into constructor, the program use the version in `Package.json`.
 
 ## Override help and version flags
 
-The program handles `-v` or `--version` and `-h` or `--help` automatically. However, these can be overwritten by having these flags in the `flags` object passed to the `parse` function
+The program handles `-v` or `--version` and `-h` or `--help` automatically. However, these can be overwritten by having these flags in the `flags` object passed to the `parse` function.
 
-The following will prevent `SimpleCLI` from handling these flags automatically and you can handle these in your program
+The following will prevent `SimpleCLI` from handling these flags automatically and you can handle these in your program:-
 
 ```js
 const flags = {
@@ -246,7 +247,7 @@ You have ordered a sandwich: Italian bread + salad  + cheese
 
 While in interactive mode if a flag has `required: true`, the value for that program becomes mandatory and an empty value will not be accepted for that flag.
 
-e.g.
+e.g.:-
 
 ```
 bread (required):
@@ -254,7 +255,7 @@ bread (required):
 
 ## Errors
 
-List of errors thrown by the `parse` function
+List of errors thrown by the `parse` function:-
 
 | Code | Error                                |
 | ---- | ------------------------------------ |
