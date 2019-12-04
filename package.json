@@ -2,7 +2,7 @@
   "name": "simplecli",
   "version": "1.0.0",
   "description": "Utility to create command-line programs",
-  "main": "build/cli.js",
+  "main": "build/index.js",
   "scripts": {
     "build": "tsc",
     "test": "jest",
