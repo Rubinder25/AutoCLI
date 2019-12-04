@@ -1,5 +1,5 @@
 module.exports = {
-  rootDir: './build/__tests__/',
+  rootDir: './src/__tests__/',
   testRegex: '.*\\.test.(ts|js)$',
   verbose: true,
   transform: {
