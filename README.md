@@ -5,7 +5,7 @@ Utility to create command-line programs.
 ## Install
 
 ```
-npm i simplecli
+npm i nodesimplecli
 ```
 
 ## Flags Object
@@ -60,7 +60,7 @@ const flags: FlagsObjectType<keys> = {
 ## Initialize the object
 
 ```js
-import {SimpleCLI} from 'simplecli';
+import {SimpleCLI} from 'nodesimplecli';
 
 const program = new SimpleCLI('My Program', '1.0.0');
 
@@ -74,7 +74,7 @@ const response = program.parse(process.argv.slice(2), flags, (err) =>
 To see it in action let's build a small cli utility to gather information about sandwich order.
 
 ```js
-import {SimpleCLI, FlagsObjectType, ErrorType} from 'simplecli';
+import {SimpleCLI, FlagsObjectType, ErrorType} from 'nodesimplecli';
 
 type keys = 'bread' | 'salad' | 'sauce' | 'cheese';
 

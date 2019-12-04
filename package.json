@@ -1,5 +1,5 @@
 {
-  "name": "simplecli",
+  "name": "nodesimplecli",
   "version": "1.0.0",
   "description": "Utility to create command-line programs",
   "main": "build/index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rubinder25/SimpleCLI.git"
+    "url": "git+https://github.com/Rubinder25/nodesimplecli.git"
   },
   "author": "Rubinder Singh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Rubinder25/SimpleCLI/issues"
+    "url": "https://github.com/Rubinder25/nodesimplecli/issues"
   },
-  "homepage": "https://github.com/Rubinder25/SimpleCLI#readme",
+  "homepage": "https://github.com/Rubinder25/nodesimplecli#readme",
   "devDependencies": {
     "@types/cross-spawn": "^6.0.1",
     "@types/jest": "^24.0.23",
