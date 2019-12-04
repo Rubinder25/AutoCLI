@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rubinder25/AutoCLI.git"
+    "url": "git+https://github.com/Rubinder25/SimpleCLI.git"
   },
   "author": "Rubinder Singh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Rubinder25/AutoCLI/issues"
+    "url": "https://github.com/Rubinder25/SimpleCLI/issues"
   },
-  "homepage": "https://github.com/Rubinder25/AutoCLI#readme",
+  "homepage": "https://github.com/Rubinder25/SimpleCLI#readme",
   "devDependencies": {
     "@types/cross-spawn": "^6.0.1",
     "@types/jest": "^24.0.23",
