@@ -216,7 +216,7 @@ describe('Test - interactive()', () => {
     ];
 
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/testFlags.ts',
+      'npx ts-node ./src/__tests__/cli_testers/testFlags.ts',
       [],
       input,
     ).then((output) => {
@@ -246,7 +246,7 @@ describe('Test - interactive()', () => {
     ];
 
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/testFlags.ts',
+      'npx ts-node ./src/__tests__/cli_testers/testFlags.ts',
       [],
       input,
     ).then((output) => {
@@ -321,7 +321,7 @@ describe('Test - Help', () => {
 describe('Test - Constructor', () => {
   test('-h | name: provided | version: provided', async () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/name_version_provided.ts',
+      'npx ts-node ./src/__tests__/cli_testers/name_version_provided.ts',
       ['-h'],
       [],
     ).then((output) => {
@@ -331,7 +331,7 @@ describe('Test - Constructor', () => {
 
   test('--help | name: not provided | version: not provided', async () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts',
+      'npx ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts',
       ['--help'],
       [],
     ).then((output) => {
@@ -341,7 +341,7 @@ describe('Test - Constructor', () => {
 
   test('-v | name: provided | version: provided', async () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/name_version_provided.ts',
+      'npx ts-node ./src/__tests__/cli_testers/name_version_provided.ts',
       ['-v'],
       [],
     ).then((output) => {
@@ -351,7 +351,7 @@ describe('Test - Constructor', () => {
 
   test('--version | name: not provided | version: not provided', async () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts',
+      'npx ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts',
       ['--version'],
       [],
     ).then((output) => {
@@ -363,7 +363,7 @@ describe('Test - Constructor', () => {
 describe('Test - Flag Overrides', () => {
   test('flag overriden | -h', async () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/flag_overrides.ts',
+      'npx ts-node ./src/__tests__/cli_testers/flag_overrides.ts',
       ['-h'],
       [],
     ).then((output) => {
@@ -373,7 +373,7 @@ describe('Test - Flag Overrides', () => {
 
   test('flag overriden | --help', async () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/flag_overrides.ts',
+      'npx ts-node ./src/__tests__/cli_testers/flag_overrides.ts',
       ['--help'],
       [],
     ).then((output) => {
@@ -383,7 +383,7 @@ describe('Test - Flag Overrides', () => {
 
   test('flag overriden | -v', async () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/flag_overrides.ts',
+      'npx ts-node ./src/__tests__/cli_testers/flag_overrides.ts',
       ['-v'],
       [],
     ).then((output) => {
@@ -393,7 +393,7 @@ describe('Test - Flag Overrides', () => {
 
   test('flag overriden | --version', async () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/flag_overrides.ts',
+      'npx ts-node ./src/__tests__/cli_testers/flag_overrides.ts',
       ['--version'],
       [],
     ).then((output) => {
