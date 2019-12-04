@@ -197,7 +197,7 @@ describe('Test - parse():', () => {
 });
 
 describe('Test - interactive()', () => {
-  test('Test - interactive()', () => {
+  test('Test - interactive()', async () => {
     const input = [
       'source',
       '',
@@ -223,7 +223,7 @@ describe('Test - interactive()', () => {
     });
   });
 
-  test('Test - interactive() | enter empty when the flag is required', () => {
+  test('Test - interactive() | enter empty when the flag is required', async () => {
     const input = [
       'source',
       '',
@@ -256,7 +256,7 @@ describe('Test - interactive()', () => {
 describe('Test - Help', () => {
   let testFlagObj: any;
 
-  test('no usage | no command', () => {
+  test('no usage | no command', async () => {
     testFlagObj = {
       test: {...defaultFlagConfig},
     };
@@ -265,7 +265,7 @@ describe('Test - Help', () => {
     expect(help).toMatchSnapshot();
   });
 
-  test('Only Options', () => {
+  test('Only Options', async () => {
     testFlagObj = {
       test: {...defaultFlagConfig},
     };
@@ -274,7 +274,7 @@ describe('Test - Help', () => {
     expect(help).toMatchSnapshot();
   });
 
-  test('Only Command', () => {
+  test('Only Command', async () => {
     testFlagObj = {
       command: {
         alias: 'c',
@@ -287,7 +287,7 @@ describe('Test - Help', () => {
     expect(help).toMatchSnapshot();
   });
 
-  test('Options and Command', () => {
+  test('Options and Command', async () => {
     testFlagObj = {
       test: {...defaultFlagConfig},
       command: {
@@ -301,7 +301,7 @@ describe('Test - Help', () => {
     expect(help).toMatchSnapshot();
   });
 
-  test('Usage defined', () => {
+  test('Usage defined', async () => {
     testFlagObj = {
       test: {...defaultFlagConfig},
       command: {
@@ -317,7 +317,7 @@ describe('Test - Help', () => {
 });
 
 describe('Test - Constructor', () => {
-  test('-h | name: provided | version: provided', () => {
+  test('-h | name: provided | version: provided', async () => {
     return runCLI(
       'node ./build/__tests__/cli_testers/name_version_provided.js -h',
       [''],
@@ -326,7 +326,7 @@ describe('Test - Constructor', () => {
     });
   });
 
-  test('--help | name: not provided | version: not provided', () => {
+  test('--help | name: not provided | version: not provided', async () => {
     return runCLI(
       'node ./build/__tests__/cli_testers/name_version_not_provided.js --help',
       [''],
@@ -335,7 +335,7 @@ describe('Test - Constructor', () => {
     });
   });
 
-  test('-v | name: provided | version: provided', () => {
+  test('-v | name: provided | version: provided', async () => {
     return runCLI(
       'node ./build/__tests__/cli_testers/name_version_provided.js -v',
       [''],
@@ -344,7 +344,7 @@ describe('Test - Constructor', () => {
     });
   });
 
-  test('--version | name: not provided | version: not provided', () => {
+  test('--version | name: not provided | version: not provided', async () => {
     return runCLI(
       'node ./build/__tests__/cli_testers/name_version_not_provided.js --version',
       [''],
@@ -355,7 +355,7 @@ describe('Test - Constructor', () => {
 });
 
 describe('Test - Flag Overrides', () => {
-  test('flag overriden | -h', () => {
+  test('flag overriden | -h', async () => {
     return runCLI('node ./build/__tests__/cli_testers/flag_overrides.js -h', [
       '',
     ]).then((output) => {
@@ -363,7 +363,7 @@ describe('Test - Flag Overrides', () => {
     });
   });
 
-  test('flag overriden | --help', () => {
+  test('flag overriden | --help', async () => {
     return runCLI(
       'node ./build/__tests__/cli_testers/flag_overrides.js --help',
       [''],
@@ -372,7 +372,7 @@ describe('Test - Flag Overrides', () => {
     });
   });
 
-  test('flag overriden | -v', () => {
+  test('flag overriden | -v', async () => {
     return runCLI('node ./build/__tests__/cli_testers/flag_overrides.js -v', [
       '',
     ]).then((output) => {
@@ -380,11 +380,19 @@ describe('Test - Flag Overrides', () => {
     });
   });
 
-  test('flag overriden | --version', () => {
+  test('flag overriden | --version', async () => {
     return runCLI(
       'node ./build/__tests__/cli_testers/flag_overrides.js --version',
       [''],
     ).then((output) => {
+      expect(output).toMatchSnapshot();
+    });
+  });
+});
+
+describe('Test - Flag Overrides', () => {
+  test('flag overriden | -h', async () => {
+    return runCLI('ts-node -v', ['']).then((output) => {
       expect(output).toMatchSnapshot();
     });
   });
