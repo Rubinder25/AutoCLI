@@ -27,11 +27,12 @@ export function waitSync(time: number): void {
 
 export const runCLI = (
   cmd: string,
+  args: string[],
   inputLines: string[],
   liveOutput?: boolean,
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
-    const child = spawn(cmd);
+    const child = spawn(cmd, args);
     let childOutput = '';
 
     child.stdout.on('data', (data) => {
