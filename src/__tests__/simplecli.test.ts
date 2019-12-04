@@ -216,7 +216,7 @@ describe('Test - interactive()', () => {
     ];
 
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/testFlags.ts',
+      'node ./build/__tests__/cli_testers/testFlags.js',
       input,
     ).then((output) => {
       expect(output).toMatchSnapshot();
@@ -245,7 +245,7 @@ describe('Test - interactive()', () => {
     ];
 
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/testFlags.ts',
+      'node ./build/__tests__/cli_testers/testFlags.js',
       input,
     ).then((output) => {
       expect(output).toMatchSnapshot();
@@ -319,7 +319,7 @@ describe('Test - Help', () => {
 describe('Test - Constructor', () => {
   test('-h | name: provided | version: provided', () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/name_version_provided.ts -h',
+      'node ./build/__tests__/cli_testers/name_version_provided.js -h',
       [''],
     ).then((output) => {
       expect(output).toMatchSnapshot();
@@ -328,7 +328,7 @@ describe('Test - Constructor', () => {
 
   test('--help | name: not provided | version: not provided', () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts --help',
+      'node ./build/__tests__/cli_testers/name_version_not_provided.js --help',
       [''],
     ).then((output) => {
       expect(output).toMatchSnapshot();
@@ -337,7 +337,7 @@ describe('Test - Constructor', () => {
 
   test('-v | name: provided | version: provided', () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/name_version_provided.ts -v',
+      'node ./build/__tests__/cli_testers/name_version_provided.js -v',
       [''],
     ).then((output) => {
       expect(output).toMatchSnapshot();
@@ -346,7 +346,7 @@ describe('Test - Constructor', () => {
 
   test('--version | name: not provided | version: not provided', () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/name_version_not_provided.ts --version',
+      'node ./build/__tests__/cli_testers/name_version_not_provided.js --version',
       [''],
     ).then((output) => {
       expect(output).toMatchSnapshot();
@@ -356,7 +356,7 @@ describe('Test - Constructor', () => {
 
 describe('Test - Flag Overrides', () => {
   test('flag overriden | -h', () => {
-    return runCLI('ts-node ./src/__tests__/cli_testers/flag_overrides.ts -h', [
+    return runCLI('node ./build/__tests__/cli_testers/flag_overrides.js -h', [
       '',
     ]).then((output) => {
       expect(output).toMatchSnapshot();
@@ -365,7 +365,7 @@ describe('Test - Flag Overrides', () => {
 
   test('flag overriden | --help', () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/flag_overrides.ts --help',
+      'node ./build/__tests__/cli_testers/flag_overrides.js --help',
       [''],
     ).then((output) => {
       expect(output).toMatchSnapshot();
@@ -373,7 +373,7 @@ describe('Test - Flag Overrides', () => {
   });
 
   test('flag overriden | -v', () => {
-    return runCLI('ts-node ./src/__tests__/cli_testers/flag_overrides.ts -v', [
+    return runCLI('node ./build/__tests__/cli_testers/flag_overrides.js -v', [
       '',
     ]).then((output) => {
       expect(output).toMatchSnapshot();
@@ -382,7 +382,7 @@ describe('Test - Flag Overrides', () => {
 
   test('flag overriden | --version', () => {
     return runCLI(
-      'ts-node ./src/__tests__/cli_testers/flag_overrides.ts --version',
+      'node ./build/__tests__/cli_testers/flag_overrides.js --version',
       [''],
     ).then((output) => {
       expect(output).toMatchSnapshot();
