@@ -1,5 +1,3 @@
-# `In Progress`
-
 # Simple CLI
 
 Commander like utility to create command-line programs with added support for typescript.
@@ -80,7 +78,6 @@ import {SimpleCLI, FlagsObjectType, ErrorType} from './src';
 type keys = 'bread' | 'salad' | 'sauce' | 'cheese';
 
 const flags: FlagsObjectType<keys> = {
-  // Add a order command here
   bread: {
     alias: '-b',
     flag: '--bread',
@@ -127,7 +124,7 @@ console.log(
 
 ### Commands
 
-If a flag alias and flag have '-' then they are considered as options. If it doesn't begin with '-' then it is considered as command.
+If in flag config `alias` and `flag` have '-' then it is considered as options. If it doesn't begin with '-' then it is considered as command.
 
 ### Argument vs Boolean flags
 
@@ -148,9 +145,7 @@ The program auto generates help menu if `-h` or `--help` flags are passed.
 e.g. if the above program is run with `-h` flag the following output is received
 
 ```
-Output
-
-ts-node subway.ts -h
+terminal> ts-node subway.ts -h
 
 Usage: subway [options]
 
@@ -172,9 +167,7 @@ cli.usage('my custome usage');
 ```
 
 ```
-Output
-
-ts-node subway.ts -h
+terminal> ts-node subway.ts -h
 
 Usage: subway my custome usage
 
