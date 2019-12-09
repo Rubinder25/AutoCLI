@@ -179,7 +179,10 @@ export const getVersion = (version: string): string => {
   return `version: ${version}`;
 };
 
-export const getInput = (query: string, maskInput: string): Promise<string> => {
+export const getInput = (
+  query: string,
+  maskInput: string | undefined,
+): Promise<string> => {
   return new Promise((resolve) => {
     let Writable = stream.Writable;
     let mutedOutput = false;
@@ -188,7 +191,7 @@ export const getInput = (query: string, maskInput: string): Promise<string> => {
       write(chunk, _enc, cb) {
         chunk = chunk.toString('utf8');
         if (mutedOutput) {
-          process.stdout.write(maskInput);
+          process.stdout.write(maskInput || '*');
         } else {
           process.stdout.write(chunk);
         }
