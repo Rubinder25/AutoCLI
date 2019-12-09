@@ -179,10 +179,7 @@ export const getVersion = (version: string): string => {
   return `version: ${version}`;
 };
 
-export const getInput = (
-  query: string,
-  showAstrisk: boolean,
-): Promise<string> => {
+export const getInput = (query: string, maskInput: string): Promise<string> => {
   return new Promise((resolve) => {
     let Writable = stream.Writable;
     let mutedOutput = false;
@@ -191,7 +188,7 @@ export const getInput = (
       write(chunk, _enc, cb) {
         chunk = chunk.toString('utf8');
         if (mutedOutput) {
-          process.stdout.write('*');
+          process.stdout.write(maskInput);
         } else {
           process.stdout.write(chunk);
         }
@@ -207,13 +204,13 @@ export const getInput = (
 
     rl.question(`${query} `, function(userInput: string) {
       resolve(userInput);
-      if (showAstrisk) {
+      if (maskInput) {
         process.stdout.write('\n');
       }
       rl.close();
     });
 
-    mutedOutput = showAstrisk;
+    mutedOutput = maskInput !== undefined;
   });
 };
 

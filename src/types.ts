@@ -6,7 +6,7 @@ export interface FlagConfigType {
   description: string;
   argument?: boolean; // default should be false
   required?: boolean; // default should be false
-  showAstrisk?: boolean; // default should be false
+  maskInput?: string; // default should be false
 }
 
 export type FlagsObjectType<T extends any> = {

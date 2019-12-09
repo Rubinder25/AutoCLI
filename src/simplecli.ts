@@ -166,10 +166,7 @@ export class SimpleCLI {
 
             let queryString = `${key}${secondaryString}:`;
             queryString = color ? color(queryString) : queryString;
-            inputVal = await getInput(
-              queryString,
-              flagConfig.showAstrisk || false,
-            );
+            inputVal = await getInput(queryString, flagConfig.maskInput);
             resVal = inputVal;
 
             if (resVal === '') {

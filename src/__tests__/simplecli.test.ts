@@ -33,7 +33,7 @@ describe('Test - parse():', () => {
         ...defaultFlagConfig,
         argument: false,
         required: false,
-        showAstrisk: false,
+        maskInput: undefined,
       },
     };
 

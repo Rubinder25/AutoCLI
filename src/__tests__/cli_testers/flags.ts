@@ -34,14 +34,14 @@ const flags: FlagsObjectType<keys> = {
     flag: '--password-string',
     description: 'password string',
     argument: true,
-    showAstrisk: true,
+    maskInput: '*',
   },
   'password-empty': {
     alias: '-d',
     flag: '--password-empty',
     description: 'password empty',
     argument: true,
-    showAstrisk: true,
+    maskInput: '*',
   },
   'required_souce-emtpy_string': {
     alias: '-e',
@@ -56,7 +56,7 @@ const flags: FlagsObjectType<keys> = {
     description: 'required_password-emtpy_string',
     argument: true,
     required: true,
-    showAstrisk: true,
+    maskInput: '*',
   },
   'f1-y': {
     alias: '-g',
