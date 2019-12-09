@@ -185,13 +185,13 @@ export const getInput = (
 ): Promise<string> => {
   return new Promise((resolve) => {
     let Writable = stream.Writable;
-    let mutedOutput = false;
+    let queryPrinted = false;
 
     let outputStream = new Writable({
       write(chunk, _enc, cb) {
         chunk = chunk.toString('utf8');
-        if (mutedOutput) {
-          process.stdout.write(maskInput || '*');
+        if (queryPrinted && maskInput) {
+          process.stdout.write(maskInput);
         } else {
           process.stdout.write(chunk);
         }
@@ -213,7 +213,7 @@ export const getInput = (
       rl.close();
     });
 
-    mutedOutput = maskInput !== undefined;
+    queryPrinted = true;
   });
 };
 
