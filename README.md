@@ -164,13 +164,13 @@ Options:
 The usage can be customized by calling `usage` method.
 
 ```js
-cli.usage('my custome usage');
+cli.usage('my custom usage');
 ```
 
 ```
 terminal> node subway.js -h
 
-Usage: subway my custome usage
+Usage: subway my custom usage
 
 Options:
   -b, --bread <val>  type of bread
