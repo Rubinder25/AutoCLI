@@ -6,3 +6,4 @@ src
 build/__tests__
 .github
 .vscode
+jest.config.js
