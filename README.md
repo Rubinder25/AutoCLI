@@ -253,7 +253,7 @@ bread (required):
 
 ## Errors
 
-List of errors thrown by the `parse` function:-
+List of errors `parse` function can call the callback for:-
 
 | Code | Error                                |
 | ---- | ------------------------------------ |
