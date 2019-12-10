@@ -146,7 +146,7 @@ The program auto generates help menu if `-h` or `--help` flags are passed.
 e.g. if the above program is run with `-h` flag the following output is received:-
 
 ```
-terminal> ts-node subway.ts -h
+terminal> node subway.js -h
 
 Usage: subway [options]
 
@@ -168,7 +168,7 @@ cli.usage('my custome usage');
 ```
 
 ```
-terminal> ts-node subway.ts -h
+terminal> node subway.js -h
 
 Usage: subway my custome usage
 
@@ -231,9 +231,7 @@ const program = await cli.interactive(flags, chalk.blue);
 ```
 
 ```
-Output
-
-ts-node subway.ts
+terminal> node subway.js
 
 bread: Italian
 salad (y/n): y
