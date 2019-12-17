@@ -26,7 +26,6 @@ export class SimpleCLI {
     const programName = psProgramName || path.basename(process.argv[1]);
     const version = psVersion || findVersion() || 'not found';
     let usageString = '';
-    const errors: ErrorType[] = [];
 
     function usage(s: string): void {
       usageString = s;
@@ -37,6 +36,7 @@ export class SimpleCLI {
       flags: T,
       onError: (err: ErrorType) => void,
     ): ParsedResultType<T> {
+      const errors: ErrorType[] = [];
       const res = {} as ParsedResultType<T>;
       res.args = [];
       const eof = '--'; // end of flags
