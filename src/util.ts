@@ -114,7 +114,7 @@ export const getTable = (
 export const getHelp = (
   programName: string,
   flags: FlagsObjectType<any>,
-  usage: string,
+  usage?: string,
 ): string => {
   const EOL = os.EOL;
   const commands: string[][] = [];
