@@ -36,8 +36,8 @@ export class SimpleCLI {
       flags: T,
       onError: (err: ErrorType) => void,
     ): ParsedResultType<T> {
-      const errors: ErrorType[] = [];
       const res = {} as ParsedResultType<T>;
+      const errors: ErrorType[] = [];
       res.args = [];
       const eof = '--'; // end of flags
       const flagsLimit = cliInputArr.includes(eof)
