@@ -96,7 +96,8 @@ export const getTable = (
 
   data.forEach((row) => {
     row.forEach((cell, j) => {
-      let cellWidth = j < row.length - 1 ? cell.length + colSpace : cell.length;
+      const cellWidth =
+        j < row.length - 1 ? cell.length + colSpace : cell.length;
       nColWidth[j] = Math.max(nColWidth[j], cellWidth);
     });
   });
@@ -184,10 +185,10 @@ export const getInput = (
   maskInput: string | undefined,
 ): Promise<string> => {
   return new Promise((resolve) => {
-    let Writable = stream.Writable;
+    const Writable = stream.Writable;
     let queryPrinted = false;
 
-    let outputStream = new Writable({
+    const outputStream = new Writable({
       write(chunk, _enc, cb) {
         chunk = chunk.toString('utf8');
         if (queryPrinted && maskInput) {
@@ -199,7 +200,7 @@ export const getInput = (
       },
     });
 
-    let rl = readline.createInterface({
+    const rl = readline.createInterface({
       input: process.stdin,
       output: outputStream,
       terminal: true,
