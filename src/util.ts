@@ -218,7 +218,7 @@ export const getInput = (
   });
 };
 
-export const clearLine = () => {
+export const clearLine = (): void => {
   readline.moveCursor(process.stdout, 0, -1);
   readline.cursorTo(process.stdout, 0);
   readline.clearScreenDown(process.stdout);
