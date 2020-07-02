@@ -1,6 +1,9 @@
-# Node Simple CLI
+# Node Simple Cli
 
-Utility to create command-line programs. 
+![GitHub](https://img.shields.io/github/license/rubinder25/NodeSimpleCli?style=flat-square)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/rubinder25/NodeSimpleCli?style=flat-square)
+
+Utility to create command-line programs.
 
 > This utility is built with typescript type safety in mind and has an interactive mode
 
@@ -15,7 +18,7 @@ npm i nodesimplecli
 To see it in action let's build a small cli utility to gather information about sandwich order.
 
 ```js
-import {NodeSimpleCLI, ErrorType, createFlags} from 'nodesimplecli;
+import {NodeSimpleCLI, ErrorType, createFlags} from 'nodesimplecli';
 
 const flags = createFlags({
   bread: {
