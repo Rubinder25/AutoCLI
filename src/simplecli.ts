@@ -1,6 +1,6 @@
 import path from 'path';
 import {
-  getHelp,
+  generateHelp,
   getVersion,
   findVersion,
   getMappings,
@@ -17,7 +17,7 @@ import {
 } from './types';
 import chalk, {Chalk} from 'chalk';
 
-export class SimpleCLI {
+export class NodeSimpleCLI {
   public usage: (usageString: string) => void;
   public parse: ParseFuncType;
   public interactive: InteractiveModeQAFuncType;
@@ -100,7 +100,7 @@ export class SimpleCLI {
         recievedFlags.hasOwnProperty('-h') ||
         recievedFlags.hasOwnProperty('--help')
       ) {
-        process.stdout.write(getHelp(programName, flags, usageString));
+        process.stdout.write(generateHelp(programName, flags, usageString));
         process.exit(0);
       }
 

@@ -1,6 +1,6 @@
 import {FlagConfigType, ParsedResultType, FlagsObjectType} from '../types';
 import {parse, runCLI} from './testutil';
-import {getHelp} from '../util';
+import {generateHelp} from '../util';
 
 const defaultFlagConfig: FlagConfigType = {
   alias: '-t',
@@ -263,7 +263,7 @@ describe('Test - Help', () => {
       test: {...defaultFlagConfig},
     };
 
-    const help = getHelp('Test Program', testFlagObj, '');
+    const help = generateHelp('Test Program', testFlagObj, '');
     expect(help).toMatchSnapshot();
   });
 
@@ -272,7 +272,7 @@ describe('Test - Help', () => {
       test: {...defaultFlagConfig},
     };
 
-    const help = getHelp('Test Program', testFlagObj, '');
+    const help = generateHelp('Test Program', testFlagObj, '');
     expect(help).toMatchSnapshot();
   });
 
@@ -285,7 +285,7 @@ describe('Test - Help', () => {
       },
     };
 
-    const help = getHelp('Test Program', testFlagObj, '');
+    const help = generateHelp('Test Program', testFlagObj, '');
     expect(help).toMatchSnapshot();
   });
 
@@ -299,7 +299,7 @@ describe('Test - Help', () => {
       },
     };
 
-    const help = getHelp('Test Program', testFlagObj, '');
+    const help = generateHelp('Test Program', testFlagObj, '');
     expect(help).toMatchSnapshot();
   });
 
@@ -313,7 +313,7 @@ describe('Test - Help', () => {
       },
     };
 
-    const help = getHelp('Test Program', testFlagObj, 'my custom usage');
+    const help = generateHelp('Test Program', testFlagObj, 'my custom usage');
     expect(help).toMatchSnapshot();
   });
 });

@@ -1,2 +1,3 @@
 export * from './simplecli';
-export {getHelp, createFlags} from './util';
+export {generateHelp, createFlags} from './util';
+export {ErrorType} from './types';

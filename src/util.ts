@@ -112,7 +112,7 @@ export const getTable = (
   return table;
 };
 
-export const getHelp = (
+export const generateHelp = (
   programName: string,
   flags: FlagsObjectType,
   usage?: string,
