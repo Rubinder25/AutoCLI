@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rubinder25/nodesimplecli.git"
+    "url": "git+https://github.com/Rubinder25/NodeSimpleCli.git"
   },
   "author": "Rubinder Singh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Rubinder25/nodesimplecli/issues"
+    "url": "https://github.com/Rubinder25/NodeSimpleCli/issues"
   },
-  "homepage": "https://github.com/Rubinder25/nodesimplecli#readme",
+  "homepage": "https://github.com/Rubinder25/NodeSimpleCli#readme",
   "devDependencies": {
     "@types/cross-spawn": "^6.0.1",
     "@types/jest": "^24.9.1",
