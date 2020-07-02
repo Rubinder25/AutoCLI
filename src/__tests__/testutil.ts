@@ -1,6 +1,6 @@
 import {spawn} from 'cross-spawn';
 import {FlagsObjectType, ParsedResultType} from '../types';
-import {NodeSimpleCLI} from '../simplecli';
+import {NodeSimpleCLI} from '../nodeSimpleCli';
 
 export const parse = (
   input: string[],

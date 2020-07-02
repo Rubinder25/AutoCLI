@@ -1,3 +1,3 @@
-export * from './simplecli';
-export {generateHelp, createFlags} from './util';
+export * from './nodeSimpleCli';
+export {generateHelp, createFlags} from './utils';
 export {ErrorType} from './types';

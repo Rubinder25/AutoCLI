@@ -1,4 +1,4 @@
-import {createFlags} from '../../util';
+import {createFlags} from '../../utils';
 
 const flags = createFlags({
   'souce-string': {

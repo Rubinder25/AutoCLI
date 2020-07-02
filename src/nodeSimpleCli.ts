@@ -7,7 +7,7 @@ import {
   getInput,
   clearLine,
   isOption,
-} from './util';
+} from './utils';
 import {
   ParseFuncType,
   FlagsObjectType,

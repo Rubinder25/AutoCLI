@@ -1,6 +1,6 @@
 import {FlagConfigType, ParsedResultType, FlagsObjectType} from '../types';
 import {parse, runCLI} from './testutil';
-import {generateHelp} from '../util';
+import {generateHelp} from '../utils';
 
 const defaultFlagConfig: FlagConfigType = {
   alias: '-t',

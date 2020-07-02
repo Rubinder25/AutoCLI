@@ -1,4 +1,4 @@
-import {NodeSimpleCLI} from '../../simplecli';
+import {NodeSimpleCLI} from '../../nodeSimpleCli';
 import flags from './flags';
 
 const program = new NodeSimpleCLI();
