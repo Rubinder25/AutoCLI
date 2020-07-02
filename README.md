@@ -1,6 +1,8 @@
-# Simple CLI
+# Node Simple CLI
 
-Utility to create command-line programs.
+Utility to create command-line programs. 
+
+> This utility is built with typescript type safety in mind and has an interactive mode
 
 ## Install
 
@@ -8,77 +10,14 @@ Utility to create command-line programs.
 npm i nodesimplecli
 ```
 
-## Flags Object
-
-We first need to define the flags which will be used by our application. The flag object will contain definitions of all the commands and flags.
-
-```js
-const flags = {
-  bread: {
-    alias: '-b',
-    flag: '--bread',
-    description: 'type of bread',
-    argument: true,
-    required: true,
-  },
-  salad: {
-    alias: '-s',
-    flag: '--salad',
-    description: 'add salad',
-  },
-};
-
-const response = program.parse(process.argv.slice(2), flags, (err) =>
-  console.log(err.display),
-);
-
-// the response object will have all properties of flags attached to it with values
-console.log(response);
-```
-
-### Add Typescript support to flags
-
-```typescript
-type keys = 'bread' | 'salad';
-
-const flags: FlagsObjectType<keys> = {
-  bread: {
-    alias: '-b',
-    flag: '--bread',
-    description: 'type of bread',
-    argument: true,
-    required: true,
-  },
-  salad: {
-    alias: '-s',
-    flag: '--salad',
-    description: 'add salad',
-  },
-};
-```
-
-## Initialize the object
-
-```js
-import {SimpleCLI} from 'nodesimplecli';
-
-const program = new SimpleCLI('My Program', '1.0.0');
-
-const response = program.parse(process.argv.slice(2), flags, (err) =>
-  console.log(err.display),
-);
-```
-
 ## In Action
 
 To see it in action let's build a small cli utility to gather information about sandwich order.
 
 ```js
-import {SimpleCLI, FlagsObjectType, ErrorType} from 'nodesimplecli';
+import {NodeSimpleCLI, ErrorType, createFlags} from 'nodesimplecli;
 
-type keys = 'bread' | 'salad' | 'sauce' | 'cheese';
-
-const flags: FlagsObjectType<keys> = {
+const flags = createFlags({
   bread: {
     alias: '-b',
     flag: '--bread',
@@ -101,9 +40,9 @@ const flags: FlagsObjectType<keys> = {
     flag: '--cheese',
     description: 'add cheese',
   },
-};
+});
 
-const cli = new SimpleCLI('subway', '1.0.0');
+const cli = new NodeSimpleCLI('subway', '1.0.0');
 
 const onError = (err: ErrorType) => {
   console.log(err.display);
