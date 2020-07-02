@@ -1,6 +1,6 @@
 {
   "name": "nodesimplecli",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "Utility to create command-line programs",
   "main": "build/index.js",
   "scripts": {
