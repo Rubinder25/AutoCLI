@@ -31,7 +31,7 @@ export class SimpleCLI {
       usageString = s;
     }
 
-    function parse<T extends FlagsObjectType<any>>(
+    function parse<T extends FlagsObjectType>(
       cliInputArr: string[],
       flags: T,
       onError: (err: ErrorType) => void,
@@ -139,7 +139,7 @@ export class SimpleCLI {
       return res;
     }
 
-    async function interactive<T extends FlagsObjectType<any>>(
+    async function interactive<T extends FlagsObjectType>(
       flags: T,
       color?: Chalk,
     ): Promise<ParsedResultType<T>> {

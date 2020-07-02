@@ -12,6 +12,7 @@ const flags = {
     description: 'version',
   },
 };
+
 const program = new SimpleCLI('test_runner', '1.0.0');
 
 program.parse(process.argv.slice(2), flags, () => {});

@@ -2,12 +2,10 @@ import {spawn} from 'cross-spawn';
 import {FlagsObjectType, ParsedResultType} from '../types';
 import {SimpleCLI} from '../simplecli';
 
-export type TestFlagObjType = FlagsObjectType<'test'>;
-
 export const parse = (
   input: string[],
-  testFlagObj: TestFlagObjType,
-): [ParsedResultType<TestFlagObjType>, number[]] => {
+  testFlagObj: FlagsObjectType,
+): [ParsedResultType<FlagsObjectType>, number[]] => {
   const simpleCLI = new SimpleCLI('Test Program', '1.0.0');
   let errCodes: number[] = [];
 

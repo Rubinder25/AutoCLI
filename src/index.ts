@@ -1,3 +1,3 @@
 export * from './simplecli';
-export {getHelp} from './util';
+export {getHelp, createFlags} from './util';
 export {FlagsObjectType} from './types';

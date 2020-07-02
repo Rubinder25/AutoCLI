@@ -1,5 +1,5 @@
-import {FlagConfigType, ParsedResultType} from '../types';
-import {TestFlagObjType, parse, runCLI} from './testutil';
+import {FlagConfigType, ParsedResultType, FlagsObjectType} from '../types';
+import {parse, runCLI} from './testutil';
 import {getHelp} from '../util';
 
 const defaultFlagConfig: FlagConfigType = {
@@ -9,8 +9,8 @@ const defaultFlagConfig: FlagConfigType = {
 };
 
 describe('Test - parse():', () => {
-  let testFlagObj: TestFlagObjType;
-  let res: ParsedResultType<TestFlagObjType>;
+  let testFlagObj: FlagsObjectType;
+  let res: ParsedResultType<FlagsObjectType>;
   let errCodes: number[];
   let inputs: string[][] = [];
 

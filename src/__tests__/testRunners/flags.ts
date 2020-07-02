@@ -1,22 +1,6 @@
-import {FlagsObjectType} from '../../types';
+import {createFlags} from '../../util';
 
-type keys =
-  | 'souce-string'
-  | 'souce-empty'
-  | 'password-string'
-  | 'password-empty'
-  | 'required_souce-emtpy_string'
-  | 'required_password-emtpy_string'
-  | 'f1-y'
-  | 'f1-Y'
-  | 'f1-yes'
-  | 'f1-Yes'
-  | 'f2-n'
-  | 'f2-invalidString'
-  | 'f3-empty'
-  | 'f4-required';
-
-const flags: FlagsObjectType<keys> = {
+const flags = createFlags({
   'souce-string': {
     alias: '-a',
     flag: '--source-string',
@@ -99,6 +83,6 @@ const flags: FlagsObjectType<keys> = {
     description: 'f4-required',
     required: true,
   },
-};
+});
 
 export default flags;

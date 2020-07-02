@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import readline from 'readline';
 import stream from 'stream';
-import {FlagsObjectType, FlagConfigType} from './types';
+import {FlagsObjectType, FlagConfigType, CreateFlagsReturnType} from './types';
 
 const helpFlag: FlagConfigType = {
   alias: '-h',
@@ -114,7 +114,7 @@ export const getTable = (
 
 export const getHelp = (
   programName: string,
-  flags: FlagsObjectType<any>,
+  flags: FlagsObjectType,
   usage?: string,
 ): string => {
   const EOL = os.EOL;
@@ -222,4 +222,10 @@ export const clearLine = (): void => {
   readline.moveCursor(process.stdout, 0, -1);
   readline.cursorTo(process.stdout, 0);
   readline.clearScreenDown(process.stdout);
+};
+
+export const createFlags = <T extends FlagsObjectType>(
+  flags: T,
+): CreateFlagsReturnType<T> => {
+  return flags;
 };
