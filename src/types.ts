@@ -9,7 +9,7 @@ export interface FlagConfigType {
   maskInput?: string; // default should be false
 }
 
-export type FlagsObjectType<T extends any> = {
+export type FlagsObjectType<T extends string> = {
   [key in T]: FlagConfigType;
 };
 
