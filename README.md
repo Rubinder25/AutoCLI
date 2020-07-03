@@ -5,7 +5,7 @@
 
 Utility to create command-line programs.
 
-> This utility is built with typescript type safety in mind and has an interactive mode
+> This utility is built with typescript in mind and has an interactive mode
 
 ## Install
 
