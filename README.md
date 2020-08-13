@@ -97,6 +97,7 @@ Options:
   -s, --salad        add salad
   -u, --sauce        add sauce
   -c, --cheese       add cheese
+
   -h, --help         help
   -v, --version      version
 ```
@@ -119,6 +120,7 @@ Options:
   -s, --salad        add salad
   -u, --sauce        add sauce
   -c, --cheese       add cheese
+
   -h, --help         help
   -v, --version      version
 ```

@@ -124,17 +124,13 @@ export const generateHelp = (
   let hasVersion = false;
 
   for (const key in flags) {
-    let selectedCategory: string[][];
-
     if (flags.hasOwnProperty(key)) {
       const flagConfig = flags[key];
       if (isOption(flagConfig.alias) && isOption(flagConfig.flag)) {
-        selectedCategory = options;
+        options.push(getFlagRow(flagConfig));
       } else {
-        selectedCategory = commands;
+        commands.push(getFlagRow(flagConfig));
       }
-
-      selectedCategory.push(getFlagRow(flagConfig));
 
       if (flagConfig.alias === '-h' && flagConfig.flag === '--help') {
         hasHelp = true;
@@ -144,6 +140,10 @@ export const generateHelp = (
         hasVersion = true;
       }
     }
+  }
+
+  if ((!hasHelp || !hasVersion) && options.length > 0) {
+    options.push(['']);
   }
 
   if (!hasHelp) {

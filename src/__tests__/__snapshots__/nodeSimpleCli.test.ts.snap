@@ -19,6 +19,7 @@ Options:
   -m, --f2-invalidString                      f2-invalidString              
   -n, --f3-empty                              f3-empty                      
   -o, --f4-required                           f4-required                   
+      
   -h, --help                                  help                          
   -v, --version                               version                       
 "
@@ -45,6 +46,7 @@ Options:
   -m, --f2-invalidString                      f2-invalidString              
   -n, --f3-empty                              f3-empty                      
   -o, --f4-required                           f4-required                   
+      
   -h, --help                                  help                          
   -v, --version                               version                       
 "
@@ -79,6 +81,7 @@ Usage: Test Program [options]
 
 Options:
   -t, --test     test flag
+      
   -h, --help     help     
   -v, --version  version  
 "
@@ -93,6 +96,7 @@ Commands:
 
 Options:
   -t, --test     test flag
+      
   -h, --help     help     
   -v, --version  version  
 "
@@ -107,6 +111,7 @@ Commands:
 
 Options:
   -t, --test     test flag
+      
   -h, --help     help     
   -v, --version  version  
 "
@@ -118,6 +123,7 @@ Usage: Test Program [options]
 
 Options:
   -t, --test     test flag
+      
   -h, --help     help     
   -v, --version  version  
 "
