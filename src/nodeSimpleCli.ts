@@ -76,7 +76,7 @@ export class NodeSimpleCLI {
 
               if (!resVal) {
                 errors.push({
-                  display: `${key} requires a value (err: 101)`,
+                  display: `${key} requires a value`,
                   flag: key,
                   code: 101,
                 });
@@ -85,7 +85,7 @@ export class NodeSimpleCLI {
           } else {
             if (flagConfig.required) {
               errors.push({
-                display: `${key} is required (err: 102)`,
+                display: `${key} is required`,
                 flag: key,
                 code: 102,
               });
@@ -116,7 +116,7 @@ export class NodeSimpleCLI {
         if (recievedFlags[key] < flagsLimit) {
           if (isOption(key)) {
             errors.push({
-              display: `${key} is not a valid option (err: 103)`,
+              display: `${key} is not a valid option`,
               flag: key,
               code: 103,
             });
