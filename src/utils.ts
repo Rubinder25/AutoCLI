@@ -92,7 +92,11 @@ export const getTable = (
 ): string => {
   const EOL = os.EOL;
   const nColWidth: number[] = Array(data[0].length).fill(0);
-  let table: string = EOL + header + EOL;
+  let table: string = '';
+
+  if (header) {
+    table += EOL + header + EOL;
+  }
 
   data.forEach((row) => {
     row.forEach((cell, j) => {
