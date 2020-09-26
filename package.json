@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rimraf build && tsc",
     "test": "jest",
-    "dev": "nodemon -e js,ts -w ./src --exec \"npm run build && npm run test\""
+    "dev": "nodemon -e js,ts -w ./src --exec \"npm run build && npm run test\"",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
