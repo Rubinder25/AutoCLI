@@ -7,7 +7,7 @@ export const parse = (
   testFlagObj: FlagsObjectType,
 ): [ParsedResultType<FlagsObjectType>, number[]] => {
   const simpleCLI = new NodeSimpleCLI('Test Program', '1.0.0');
-  let errCodes: number[] = [];
+  const errCodes: number[] = [];
 
   const res = simpleCLI.parse(input, testFlagObj, (err) => {
     errCodes.push(err.code);
@@ -23,14 +23,14 @@ export function waitSync(time: number): void {
   }
 }
 
-export const runCLI = (
+export const runCommand = (
   cmd: string,
   args: string[],
   inputLines: string[],
   liveOutput?: boolean,
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
-    const child = spawn(cmd, args);
+    const child = spawn(cmd, args, {shell: true});
     let childOutput = '';
 
     child.stdout.on('data', (data) => {
